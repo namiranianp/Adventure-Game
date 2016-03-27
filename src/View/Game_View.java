@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 public class Game_View {
 	
 	public Game_View(){
-		
+		System.out.println("it worked!");
 	}
 	
 	
