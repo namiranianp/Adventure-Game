@@ -45,11 +45,13 @@ public class Game_Model{
 	//creates an array of the map and holds all the data of the blocks
 	private void initializeMap(int size){
 		map = new String[size][size];
+		/* this should use file data to setup array data
 		for(int row = 0; row < map.length; row++){
 			for(int col = 0; col < map[0].length; col++){
 				map[row][col] = "null";
 			}
 		}
+		*/
 	}
 	
 	//Sets the data on what the map looks like
