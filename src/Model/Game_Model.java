@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
 //Custom experimentalcode, this is all pseudo code
-public class Game_Model(){
+public class Game_Model{
 	//Player location
 	private int posx;
 	private int posy;
@@ -18,7 +18,7 @@ public class Game_Model(){
 	
 	//Maybe take in current map size 
 	//(unless we add collision with certain objects)
-	public Adventure_Game_Model(){
+	public Game_Model(){
 		//Not sure what to put in here, 
 		// maybe take in map size? and
 		//starting position
@@ -85,19 +85,19 @@ public class Game_Model(){
 		}
 	}
 	
-	public void getPosX(){
+	public int getPosX(){
 		return posx;
 	}
-	public void getPosY(){
+	public int getPosY(){
 		return posy;
 	}
 	
-	public void getBoardSize(){
+	public int getBoardSize(){
 		return boardSize;
 	}
 	
 	private boolean inBounds(int x, int y){
-		return(x < boardSize && x > 0 && y < boardSize && y > 0){
+		return(x < boardSize && x > 0 && y < boardSize && y > 0);
 	}
 	
 	public void giveInv(int itemCode){
