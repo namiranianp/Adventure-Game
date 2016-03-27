@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
 //Custom experimental code, this is all pseudo code
+
 public class Game_Model{
 	//Player location
 	private int posx;
