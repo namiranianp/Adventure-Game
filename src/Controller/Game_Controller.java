@@ -11,12 +11,14 @@ public class Game_Controller {
         return model.getBoardSize();
     }
 
-    public static void setBoardSize(int boardSize) {
-        Game_Controller.boardSize = boardSize;
+    public void setBoardSize(int boardSize) {
+
+        model.setBoardSize(boardSize);
+
     }
 
-    public static int getBoardLength() {
-        return boardLength;
+    public int getBoardLength() {
+        model.getBoardSize()
     }
 
     //Testing Branching

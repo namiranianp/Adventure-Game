@@ -8,7 +8,7 @@ import java.awt.*;
 public class Game_View {
 	
 	public Game_View(){
-		
+		System.out.println("it worked!");
 	}
 	
 	
