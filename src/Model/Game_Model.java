@@ -2,12 +2,18 @@ package Model;
 
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
+import java.io.*;
 
 //Custom experimentalcode, this is all pseudo code
 public class Game_Model(){
+	//File
+	String filename = "null";
+	
 	//Player location
 	private int posx;
 	private int posy;
+	
+	
 	//Map size
 	private int boardSize;
 	//array of map (holds map data)
@@ -19,10 +25,6 @@ public class Game_Model(){
 	//Maybe take in current map size 
 	//(unless we add collision with certain objects)
 	public Adventure_Game_Model(){
-		//Not sure what to put in here, 
-		// maybe take in map size? and
-		//starting position
-		
 		//Test purposes
 		posx = 1;
 		posy = 1;
@@ -35,6 +37,19 @@ public class Game_Model(){
 	//else it will create a document named save.txt
 	public void readFile(){
 		//if there is no save data on document, create one.
+		//Test --> txt file should read for map in folder
+		filename = "mapdata.txt"; //or similar name
+		try {
+            		FileReader fileReader = new FileReader(fileName);
+        		BufferedReader bufferedReader = new BufferedReader(fileReader);
+            
+            		//Test
+        		 while((line = bufferedReader.readLine()) != null) {
+        			   System.out.println(line);
+        		 }   
+        		  // Always close files.
+        		 bufferedReader.close();         
+        	}
 	}
 	
 	//Saves file for character (should create a txtfile containing data)
