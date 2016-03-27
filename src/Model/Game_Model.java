@@ -26,16 +26,20 @@ public class Game_Model(){
 		//Test purposes
 		posx = 1;
 		posy = 1;
+		//This will be replaced with a method that reads a file to
 		boardSize = 10;
 		initializeMap(boardSize);
 	}
 	
+	//this should read the save file for map data, should also read a save file if there is one,
+	//else it will create a document named save.txt
 	public void readFile(){
-		//
+		//if there is no save data on document, create one.
 	}
 	
+	//Saves file for character (should create a txtfile containing data)
 	public void saveFile(){
-		//
+		//character data
 	}
 	
 	//creates an array of the map and holds all the data of the blocks
