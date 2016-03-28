@@ -3,11 +3,8 @@ package Model;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
-<<<<<<< HEAD
 //Custom experimental code, this is all pseudo code
 
-=======
->>>>>>> cadbbc34d44319b1b76b899448c2c7bb281763d4
 public class Game_Model{
 	//Player location
 	private int posx;
@@ -56,7 +53,7 @@ public class Game_Model{
 	}
 =======
 	}*/
->>>>>>> cadbbc34d44319b1b76b899448c2c7bb281763d4
+
 	
 	//Sets the data on what the map looks like
 	public void setImage(int x, int y, BufferedImage pic){
@@ -71,8 +68,8 @@ public class Game_Model{
 	//Moves to this location
 	public void move(int x, int y){
 		if(inBounds(x,y)){
-			xpos = x;
-			ypos = y;
+			posx = x;
+			posy = y;
 		}
 	}
 	

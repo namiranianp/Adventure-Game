@@ -1,5 +1,17 @@
 package View;
 
+<<<<<<< HEAD
+import Controller.Game_Controller;
+
+import javax.swing.*;
+
+public class Game_View {
+
+	public Game_Controller control;
+	public GamePanel gameBoard;
+
+
+=======
 import java.awt.event.KeyAdapter;
 
 import javax.swing.JFrame;
@@ -11,6 +23,7 @@ public class Game_View {
 	JFrame window;
 	GamePanel gameBoard;
 	
+>>>>>>> origin/master
 	public Game_View(Game_Controller c) {
 		control = c;
 		
@@ -22,6 +35,8 @@ public class Game_View {
 		// LAST
 		window.getContentPane().add(gameBoard);
 		window.setVisible(true);
+        window.setResizable(false);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 	
 	public void addKeyAdapter(CustomKeyListener listen){
