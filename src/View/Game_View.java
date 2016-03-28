@@ -1,24 +1,27 @@
 package View;
 
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import Controller.Game_Controller;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Game_View {
-	
-	public Game_View(){
-		System.out.println("it worked!");
-	}
-	
-	
-	private class mainViewPanel extends JPanel {
-		public void paintComponent(Graphics g) {
-			for(int i = 0; i< Game_Controller.getBoardSize(); i++){
-				for(int j=0; j<Game_Controller.getBoardLength(); j++){
-					
-				}
-			}
-		}
+	Game_Controller control;
+
+	public Game_View(Game_Controller c) {
+		control = c;
+		
+		JFrame window = new JFrame();
+		window.setBounds(100, 20, 655, 700);
+		
+		GamePanel gameBoard = new GamePanel(control);
+
+		// LAST
+		window.getContentPane().add(gameBoard);
+		window.setVisible(true);
 	}
 }
