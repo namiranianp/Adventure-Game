@@ -1,5 +1,3 @@
-//600x600 JPanel
-
 package View;
 
 import java.awt.Dimension;
@@ -12,15 +10,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Game_View {
-	public static void main(String[] args) {
-		Game_View go = new Game_View();
-	}
+	Game_Controller control;
 
-	public Game_View() {
+	public Game_View(Game_Controller c) {
+		control = c;
+		
 		JFrame window = new JFrame();
 		window.setBounds(100, 20, 655, 700);
 		
-		GamePanel gameBoard = new GamePanel();
+		GamePanel gameBoard = new GamePanel(control);
 
 		// LAST
 		window.getContentPane().add(gameBoard);
