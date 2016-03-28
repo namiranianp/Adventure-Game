@@ -43,9 +43,9 @@ public class Game_Model{
         		 while((line = bufferedReader.readLine()) != null) {
                 		String[] arr = line.split(" ");   
                 		for(int col = 0; col < boardSize; col++){
-                			 String temp = arr[col].substring(1);
+                			 String temp = "images\" + arr[col].substring(1);
                 			 BufferedImage in = ImageIO.read(temp);
-                			 map[row][col] = new BufferedImage(240, 240, temp);
+                			 map[row][col] = new BufferedImage(col * 10, row * 10, temp);
                 		}
                 		row++;
             		}   
