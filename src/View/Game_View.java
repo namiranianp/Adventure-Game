@@ -1,10 +1,9 @@
 package View;
 
-import java.awt.event.KeyAdapter;
-
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import Controller.CustomKeyAdapter;
 import Controller.Game_Controller;
 
 public class Game_View {
@@ -26,13 +25,9 @@ public class Game_View {
 		window.setResizable(false);
 		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
-<<<<<<< HEAD
-	
-	public void addKeyAdapter(KeyAdapter listen){
-=======
 
-	public void addKeyAdapter(CustomKeyListener listen) {
->>>>>>> Pedram_Changes
+	public void addKeyAdapter(CustomKeyAdapter listen) {
+
 		window.addKeyListener(listen);
 	}
 }
