@@ -28,11 +28,29 @@ public class Game_Model{
 		//Base size
 		boardSize = 10;
 		map = new BufferedImage[boardSize][boardSize];
+		readFile();
 	}
 	
 	//this should read the save file for map data
-	public void readFile(){
-		//
+	public void readFile() throws IOException{
+		String file = "board.txt";
+		String line = null;
+		int row = 0;
+		 try {
+            		FileReader fileReader = new FileReader(fileName);
+        		BufferedReader bufferedReader =  new BufferedReader(fileReader);
+
+        		 while((line = bufferedReader.readLine()) != null) {
+                		String[] arr = line.split(" ");   
+                		for(int col = 0; col < boardSize; col++){
+                			 String temp = arr[col].substring(1);
+                			 BufferedImage in = ImageIO.read(temp);
+                			 map[row][col] = new BufferedImage(240, 240, temp);
+                		}
+                		row++;
+            		}   
+            		bufferedReader.close();  
+		 }
 	}
 	
 	public void initializeMapArray(){
