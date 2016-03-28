@@ -41,7 +41,7 @@ public class Game_Model {
 		String file = "board.txt";
 		String line = null;
 		int row = 0;
-<<<<<<< HEAD
+
 		try {
 			FileReader reader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(reader);
@@ -60,26 +60,7 @@ public class Game_Model {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-=======
 
-		 try {
-            		FileReader reader = new FileReader(file);
-        		BufferedReader bufferedReader =  new BufferedReader(reader);
-
-        		 while((line = bufferedReader.readLine()) != null) {
-                		String[] arr = line.split(" ");
-                		for(int col = 0; col < boardSize; col++){
-                			 String temp = "images/" + arr[col].substring(1);
-                			 BufferedImage in = ImageIO.read(new File(temp));
-                			 map[row][col] = in;
-                		}
-                		row++;
-            		}
-            		bufferedReader.close();
-		 }catch(Exception e){
-			 e.printStackTrace();
-		 }
->>>>>>> Vybhav's_Changes
 	}
 
 	public void initializeMapArray() {
