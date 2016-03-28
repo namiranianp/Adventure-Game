@@ -26,7 +26,7 @@ public class CustomKeyAdapter extends KeyAdapter {
     @Override
     public void keyTyped(KeyEvent e) {
         super.keyTyped(e);
-
+        view.gameBoard.requestFocus();
         //Grab the x and y position of the player
         int x = model.getPosX();
         int y = model.getPosY();

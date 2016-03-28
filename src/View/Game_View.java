@@ -1,29 +1,15 @@
 package View;
 
-<<<<<<< HEAD
 import Controller.Game_Controller;
 
 import javax.swing.*;
-
-public class Game_View {
-
-	public Game_Controller control;
-	public GamePanel gameBoard;
-
-
-=======
 import java.awt.event.KeyAdapter;
-
-import javax.swing.JFrame;
-
-import Controller.Game_Controller;
 
 public class Game_View {
 	Game_Controller control;
 	JFrame window;
-	GamePanel gameBoard;
-	
->>>>>>> origin/master
+	public GamePanel gameBoard;
+
 	public Game_View(Game_Controller c) {
 		control = c;
 		
@@ -39,7 +25,7 @@ public class Game_View {
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 	
-	public void addKeyAdapter(CustomKeyListener listen){
+	public void addKeyAdapter(KeyAdapter listen){
 		window.addKeyListener(listen);
 	}
 }

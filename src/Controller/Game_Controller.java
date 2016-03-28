@@ -14,6 +14,7 @@ public class Game_Controller {
 
         view = new Game_View(this);
         model = new Game_Model();
+        view.addKeyAdapter(new CustomKeyAdapter(model,view));
 
     }
 
