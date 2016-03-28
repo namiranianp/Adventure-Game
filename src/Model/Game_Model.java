@@ -3,7 +3,8 @@ package Model;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
-//Custom experimentalcode, this is all pseudo code
+//Custom experimental code, this is all pseudo code
+
 public class Game_Model{
 	//Player location
 	private int posx;
@@ -13,7 +14,7 @@ public class Game_Model{
 	//array of map (holds map data)
 	private BufferedImage[][] map;
 	
-	//Inventory --> takes in ints that corrospond to items
+	//Inventory --> takes in integers that correspond to items
 	private ArrayList<Integer> inv = new ArrayList<Integer>();
 	
 	//Maybe take in current map size 
@@ -44,14 +45,8 @@ public class Game_Model{
 	
 	//creates an array of the map and holds all the data of the blocks
 	private void initializeMap(int size){
-		map = new String[size][size];
-		/* this should use file data to setup array data
-		for(int row = 0; row < map.length; row++){
-			for(int col = 0; col < map[0].length; col++){
-				map[row][col] = "null";
-			}
-		}
-		*/
+		map = new BufferedImage[size][size];
+		// this should use file data to setup array data
 	}
 	
 	//Sets the data on what the map looks like
@@ -59,7 +54,7 @@ public class Game_Model{
 		map[y][x] = pic;
 	}
 	
-	//Returns number corrolating to picture
+	//Returns number correlating to picture
 	public BufferedImage getImage(int x, int y){
 		return map[y][x];
 	}
@@ -101,12 +96,12 @@ public class Game_Model{
 	}
 	
 	public void giveInv(int itemCode){
-		inv.add(item);
+		inv.add(itemCode);
 	}
 	
 	public void removeItem(int itemCode){
 		for(int i = 0; i < inv.size(); i++){
-			if(inv.get(i) == itemcode){
+			if(inv.get(i) == itemCode){
 				inv.remove(i);
 				break;
 			}
