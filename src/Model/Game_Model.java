@@ -25,7 +25,7 @@ public class Game_Model{
 		
 		//Base size
 		boardSize = 10;
-		map = new BufferedImage[size][size];
+		map = new BufferedImage[boardSize][boardSize];
 	}
 	
 	//this should read the save file for map data
