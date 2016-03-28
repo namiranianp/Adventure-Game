@@ -6,7 +6,10 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
+import Controller.Game_Controller;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Game_View {
 	public static void main(String[] args) {
@@ -23,6 +26,4 @@ public class Game_View {
 		window.getContentPane().add(gameBoard);
 		window.setVisible(true);
 	}
-	
-	
 }
