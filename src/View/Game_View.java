@@ -7,7 +7,7 @@ import java.awt.event.KeyAdapter;
 
 public class Game_View {
 	Game_Controller control;
-	JFrame window;
+	public JFrame window;
 	public GamePanel gameBoard;
 
 	public Game_View(Game_Controller c) {
