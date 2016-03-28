@@ -26,7 +26,7 @@ public class CustomKeyAdapter extends KeyAdapter {
     @Override
     public void keyTyped(KeyEvent e) {
         super.keyTyped(e);
-
+        view.window.requestFocus();
         //Grab the x and y position of the player
         int x = model.getPosX();
         int y = model.getPosY();
@@ -35,28 +35,26 @@ public class CustomKeyAdapter extends KeyAdapter {
         if(e.getKeyCode() == KeyEvent.VK_UP){
             model.move(x, y+1);
             System.out.println("up");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
             model.move(x, y-1);
             System.out.println("down");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }else if(e.getKeyCode() == KeyEvent.VK_LEFT){
             model.move(x-1, y);
             System.out.println("left");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             model.move(x+1, y);
             System.out.println("right");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        super.keyPressed(e);
-        //request focus for the gameBoard
-        view.gameBoard.requestFocus();
-
+        super.keyTyped(e);
+        view.window.requestFocus();
         //Grab the x and y position of the player
         int x = model.getPosX();
         int y = model.getPosY();
@@ -65,19 +63,19 @@ public class CustomKeyAdapter extends KeyAdapter {
         if(e.getKeyCode() == KeyEvent.VK_UP){
             model.move(x, y+1);
             System.out.println("up");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
             model.move(x, y-1);
             System.out.println("down");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }else if(e.getKeyCode() == KeyEvent.VK_LEFT){
             model.move(x-1, y);
             System.out.println("left");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             model.move(x+1, y);
             System.out.println("right");
-            view.gameBoard.repaint();
+            view.window.repaint();
         }
     }
 
