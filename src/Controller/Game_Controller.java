@@ -1,9 +1,9 @@
 package Controller;
 
-import java.awt.image.BufferedImage;
-
 import Model.Game_Model;
 import View.Game_View;
+
+import java.awt.image.BufferedImage;
 
 public class Game_Controller {
 
@@ -11,7 +11,11 @@ public class Game_Controller {
 	Game_View view;
 
 	public void playGame() {
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> Vybhav's_Changes
 		model = new Game_Model();
         view = new Game_View(this);
         view.addKeyAdapter(new CustomKeyAdapter(model,view));
