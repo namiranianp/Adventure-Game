@@ -1,7 +1,12 @@
 package Model;
 
-import java.util.ArrayList;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 //Custom experimental code, this is all pseudo code
 
@@ -28,11 +33,32 @@ public class Game_Model{
 		//Base size
 		boardSize = 10;
 		map = new BufferedImage[boardSize][boardSize];
+		
+		readFile();
 	}
 	
 	//this should read the save file for map data
 	public void readFile(){
-		//
+		String file = "board.txt";
+		String line = null;
+		int row = 0;
+		 try {
+            		FileReader reader = new FileReader(fileName);
+        		BufferedReader bufferedReader =  new BufferedReader(reader);
+
+        		 while((line = bufferedReader.readLine()) != null) {
+                		String[] arr = line.split(" ");   
+                		for(int col = 0; col < boardSize; col++){
+                			 String temp = "images/" + arr[col].substring(1);
+                			 BufferedImage in = ImageIO.read(new File(temp));
+                			 map[row][col] = in;
+                		}
+                		row++;
+            		}   
+            		bufferedReader.close();  
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
 	}
 	
 	public void initializeMapArray(){
