@@ -52,6 +52,7 @@ public class Game_Model {
 					String temp = "images/" + arr[col].substring(1);
 					BufferedImage in = ImageIO.read(new File(temp));
 					map[row][col] = in;
+					
 				}
 				row++;
 			}
