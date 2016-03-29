@@ -1,132 +1,41 @@
 package Model;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-//Custom experimental code, this is all pseudo code
-
-public class Game_Model {
-	// Player location
-	private int posx;
-	private int posy;
-
-	// Map size
-	private int boardSize;
-
-	// Array of map (holds map data)
-	private BufferedImage[][] map;
-
-	// Inventory --> takes in integers that correspond to items
-	private ArrayList<Integer> inv = new ArrayList<Integer>();
-
-	// (unless we add collision with certain objects)
-	public Game_Model() {
-		// Base location of character
-		posx = 1;
-		posy = 1;
-
-		// Base size
-		boardSize = 10;
-		map = new BufferedImage[boardSize][boardSize];
-
-		readFile();
+public class Game_Model{
+	final static int BOARDSIZE = 10;
+	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
+	
+	
+	public Game_Model(){
+		fillBoard("board.txt");
 	}
-
-	// this should read the save file for map data
-	public void readFile() {
-		String file = "board.txt";
-		String line = null;
-		int row = 0;
-
+	
+	//fills the game board with the map on the desired file
+	private void fillBoard(String fileName){
+		String fileToText = "";
+		Scanner read = null;
+		
 		try {
-			FileReader reader = new FileReader(file);
-			BufferedReader bufferedReader = new BufferedReader(reader);
-
-			while ((line = bufferedReader.readLine()) != null) {
-				String[] arr = line.split(" ");
-				for (int col = 0; col < boardSize; col++) {
-					String temp = "images/" + arr[col].substring(1);
-					BufferedImage in = ImageIO.read(new File(temp));
-					map[row][col] = in;
+			read = new Scanner(new File(fileName));
+			for(int i=0; i<BOARDSIZE; i++){
+				for(int j=0; j<BOARDSIZE; j++){
+					String imageName = read.next();
+					imageName = imageName.substring(1);
 					
+					String walkable = read.next();
+					walkable = walkable.substring(0, walkable.length()-1);
+					
+					//gameBoard[j][i] = new BackgroundTile(pic, walk)
+					System.out.println(imageName);
+					System.out.println(walkable);
 				}
-				row++;
 			}
-			bufferedReader.close();
-		} catch (Exception e) {
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
-	}
-
-	public void initializeMapArray() {
-		// uses readfile and puts all data in array
-	}
-
-	/*
-	 * //Saves file for character (should create a txtfile containing data)
-	 * public void saveFile(){ //character data <<<<<<< HEAD }
-	 * 
-	 * //creates an array of the map and holds all the data of the blocks
-	 * private void initializeMap(int size){ map = new
-	 * BufferedImage[size][size]; // this should use file data to setup array
-	 * data } ======= }
-	 */
-
-	// Sets the data on what the map looks like
-	public void setImage(int x, int y, BufferedImage pic) {
-		map[y][x] = pic;
-	}
-
-	// Returns number correlating to picture
-	public BufferedImage getImage(int x, int y) {
-		return map[y][x];
-	}
-
-	// Moves to this location
-	public void move(int x, int y) {
-		if (inBounds(x, y)) {
-			posx = x;
-			posy = y;
-		}
-	}
-
-	public int getPosX() {
-		return posx;
-	}
-
-	public int getPosY() {
-		return posy;
-	}
-
-	public int getBoardSize() {
-		return boardSize;
-	}
-
-	public void setBoardSize(int size) {
-		boardSize = size;
-		map = new BufferedImage[size][size];
-	}
-
-	private boolean inBounds(int x, int y) {
-		return (x < boardSize && x > 0 && y < boardSize && y > 0);
-	}
-
-	public void giveInv(int itemCode) {
-		inv.add(itemCode);
-	}
-
-	// Removes the item from the inventory
-	public void removeItem(int itemCode) {
-		for (int i = 0; i < inv.size(); i++) {
-			if (inv.get(i) == itemCode) {
-				inv.remove(i);
-				break;
-			}
 		}
 	}
 }

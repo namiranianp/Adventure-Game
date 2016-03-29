@@ -17,7 +17,7 @@ public class Game_Controller {
 		view.addKeyAdapter(new CustomKeyAdapter(model, view));
 
 	}
-
+/*
 	public BufferedImage getImage(int row, int col) {
 		return model.getImage(row, col);
 	}
@@ -35,5 +35,5 @@ public class Game_Controller {
 	public int getBoardLength() {
 		return model.getBoardSize();
 	}
-
+*/
 }

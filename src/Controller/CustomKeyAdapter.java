@@ -23,7 +23,9 @@ public class CustomKeyAdapter extends KeyAdapter {
         model = m;
     }
 
-    @Override
+    
+   /*
+    * @Override
     public void keyTyped(KeyEvent e) {
         super.keyTyped(e);
         view.window.requestFocus();
@@ -78,5 +80,5 @@ public class CustomKeyAdapter extends KeyAdapter {
             view.window.repaint();
         }
     }
-
+*/
 }
