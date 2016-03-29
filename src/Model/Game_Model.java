@@ -1,38 +1,52 @@
 package Model;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Game_Model{
+import javax.imageio.ImageIO;
+
+public class Game_Model {
 	final static int BOARDSIZE = 10;
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
-	
-	
-	public Game_Model(){
+
+	public Game_Model() {
 		fillBoard("board.txt");
 	}
-	
-	//fills the game board with the map on the desired file
-	private void fillBoard(String fileName){		
+
+	// fills the game board with the map on the desired file
+	private void fillBoard(String fileName) {
 		try {
 			Scanner read = new Scanner(new File(fileName));
-			for(int i=0; i<BOARDSIZE; i++){
-				for(int j=0; j<BOARDSIZE; j++){
+			for (int i = 0; i < BOARDSIZE; i++) {
+				for (int j = 0; j < BOARDSIZE; j++) {
 					String imageName = read.next();
 					imageName = imageName.substring(1);
-					
+					BufferedImage pic = ImageIO.read(new File("images/" + imageName));
+
 					String walkable = read.next();
-					walkable = walkable.substring(0, walkable.length()-1);
-					
-					//gameBoard[j][i] = new BackgroundTile(pic, walk)
-					System.out.println(imageName);
-					System.out.println(walkable);
+					walkable = walkable.substring(0, walkable.length() - 1);
+
+					if (walkable.equalsIgnoreCase("true")) {
+						gameBoard[j][i] = new BackgroundTile(pic, true);
+					} else {
+						gameBoard[j][i] = new BackgroundTile(pic, false);
+					}
 				}
 			}
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	//returns the board size (length = width)
+	public int getBoardSize(){
+		return BOARDSIZE;
+	}
+	
+	public BufferedImage getImage(int x, int y){
+		return gameBoard[y][x].getImage();
 	}
 }
