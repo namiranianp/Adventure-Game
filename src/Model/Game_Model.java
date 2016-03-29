@@ -10,9 +10,12 @@ import java.util.ArrayList;
 //Custom experimental code, this is all pseudo code
 
 public class Game_Model {
-	// Player location
+	// Player Info
 	private int posx;
 	private int posy;
+	private int healthCap;
+	private int health;
+	
 
 	// Map size
 	private int boardSize;
@@ -28,6 +31,9 @@ public class Game_Model {
 		// Base location of character
 		posx = 1;
 		posy = 1;
+		
+		healthCap = 3;
+		health = 3;
 
 		// Base size
 		boardSize = 10;
@@ -76,6 +82,25 @@ public class Game_Model {
 	 * BufferedImage[size][size]; // this should use file data to setup array
 	 * data } ======= }
 	 */
+	
+	public int getHealth(){
+		return health;
+	}
+	
+	public void heal(int num){
+		if(health += num > healthCap){
+			health = cap;
+		}
+	}
+	
+	//Increases the max hp
+	public void increaseHpCap(int num){
+		healthCap += num;
+	}
+	
+	public void takeDmg(int dmg){
+		health - dmg;
+	}
 
 	// Sets the data on what the map looks like
 	public void setImage(int x, int y, BufferedImage pic) {
