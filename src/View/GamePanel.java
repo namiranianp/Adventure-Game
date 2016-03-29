@@ -26,8 +26,8 @@ public class GamePanel extends JPanel {
 		// ASK FOR, AND DRAW IMAGES, SQUARE BY SQUARE
 		for (int i = 0; i < NUMSQUARES; i++) {
 			for (int j = 0; j < NUMSQUARES; j++) {
-				BufferedImage pic = control.getImage(j,i);
-				g.drawImage(pic, 20+(i*LINE), 40+(j*LINE), LINE, LINE, null);
+			//	BufferedImage pic = control.getImage(j,i);
+		//		g.drawImage(pic, 20+(i*LINE), 40+(j*LINE), LINE, LINE, null);
 			}
 		}
 	}

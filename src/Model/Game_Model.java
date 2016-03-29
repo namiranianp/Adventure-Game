@@ -14,12 +14,9 @@ public class Game_Model{
 	}
 	
 	//fills the game board with the map on the desired file
-	private void fillBoard(String fileName){
-		String fileToText = "";
-		Scanner read = null;
-		
+	private void fillBoard(String fileName){		
 		try {
-			read = new Scanner(new File(fileName));
+			Scanner read = new Scanner(new File(fileName));
 			for(int i=0; i<BOARDSIZE; i++){
 				for(int j=0; j<BOARDSIZE; j++){
 					String imageName = read.next();
