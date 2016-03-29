@@ -15,70 +15,68 @@ import java.awt.event.KeyEvent;
 
 public class CustomKeyAdapter extends KeyAdapter {
 
-    Game_View view;
-    Game_Model model;
+	Game_View view;
+	Game_Model model;
 
-    CustomKeyAdapter(Game_Model m, Game_View v){
-        view = v;
-        model = m;
-    }
+	CustomKeyAdapter(Game_Model m, Game_View v) {
+		view = v;
+		model = m;
+	}
 
-    
-   /*
-    * @Override
-    public void keyTyped(KeyEvent e) {
-        super.keyTyped(e);
-        view.window.requestFocus();
-        //Grab the x and y position of the player
-        int x = model.getPosX();
-        int y = model.getPosY();
+	@Override
+	public void keyTyped(KeyEvent e) {
+		super.keyTyped(e);
+		view.window.requestFocus();
+		// Grab the x and y position of the player
+		int x = model.getPosX();
+		int y = model.getPosY();
 
-        //change x and y pos
-        if(e.getKeyCode() == KeyEvent.VK_UP){
-            model.move(x, y+1);
-            System.out.println("up");
-            view.window.repaint();
-        }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-            model.move(x, y-1);
-            System.out.println("down");
-            view.window.repaint();
-        }else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            model.move(x-1, y);
-            System.out.println("left");
-            view.window.repaint();
-        }else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            model.move(x+1, y);
-            System.out.println("right");
-            view.window.repaint();
-        }
-    }
+		// change x and y pos
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			model.move(x, y + 1);
+			System.out.println("up");
+			view.window.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			model.move(x, y - 1);
+			System.out.println("down");
+			view.window.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			model.move(x - 1, y);
+			System.out.println("left");
+			view.window.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			model.move(x + 1, y);
+			System.out.println("right");
+			view.window.repaint();
+		}
+	}
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        super.keyTyped(e);
-        view.window.requestFocus();
-        //Grab the x and y position of the player
-        int x = model.getPosX();
-        int y = model.getPosY();
+	@Override
+	public void keyPressed(KeyEvent e) {
+		super.keyTyped(e);
+		view.window.requestFocus();
+		// Grab the x and y position of the player
+		int x = model.getPosX();
+		int y = model.getPosY();
 
-        //change x and y pos
-        if(e.getKeyCode() == KeyEvent.VK_UP){
-            model.move(x, y+1);
-            System.out.println("up");
-            view.window.repaint();
-        }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-            model.move(x, y-1);
-            System.out.println("down");
-            view.window.repaint();
-        }else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            model.move(x-1, y);
-            System.out.println("left");
-            view.window.repaint();
-        }else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            model.move(x+1, y);
-            System.out.println("right");
-            view.window.repaint();
-        }
-    }
-*/
+		// change x and y pos
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			model.move(x, y + 1);
+			System.out.println("up");
+			view.window.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			model.move(x, y - 1);
+			System.out.println("down");
+			view.window.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			model.move(x - 1, y);
+			System.out.println("left");
+			view.window.repaint();
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			model.move(x + 1, y);
+			System.out.println("right");
+			view.window.repaint();
+		}
+	}
+
 }

@@ -8,6 +8,8 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 
 public class Game_Model {
+	int xPos = 8;
+	int yPos = 5;
 	final static int BOARDSIZE = 10;
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 
@@ -46,7 +48,15 @@ public class Game_Model {
 		return BOARDSIZE;
 	}
 	
+	//returns the image at the location requested
 	public BufferedImage getImage(int x, int y){
 		return gameBoard[y][x].getImage();
+	}
+
+	public int getXPos(){
+		return xPos;
+	}
+	public int getYPos(){
+		return yPos;
 	}
 }
