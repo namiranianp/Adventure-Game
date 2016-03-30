@@ -33,11 +33,11 @@ public class CustomKeyAdapter extends KeyAdapter {
 
 		// change x and y pos
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			model.move(x, y + 1);
+			model.move(x, y - 1);
 			System.out.println("up");
 			view.window.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			model.move(x, y - 1);
+			model.move(x, y + 1);
 			System.out.println("down");
 			view.window.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -61,11 +61,11 @@ public class CustomKeyAdapter extends KeyAdapter {
 
 		// change x and y pos
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			model.move(x, y + 1);
+			model.move(x, y - 1);
 			System.out.println("up");
 			view.window.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			model.move(x, y - 1);
+			model.move(x, y + 1);
 			System.out.println("down");
 			view.window.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
