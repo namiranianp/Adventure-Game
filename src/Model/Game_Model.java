@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static javax.swing.text.html.HTML.Tag.HEAD;
-
 public class Game_Model {
 	int xPos = 8;
 	int yPos = 5;
