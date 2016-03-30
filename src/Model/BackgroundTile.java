@@ -8,9 +8,11 @@ import javax.imageio.ImageIO;
 
 public class BackgroundTile {
 	BufferedImage image;
+	BufferedImage soldier;
 	boolean walkable = true;
 	boolean player = false;
-	BufferedImage soldier;
+	
+	
 
 	// creates the image with whether or not it's walkable
 	public BackgroundTile(BufferedImage pic, boolean walk) {
