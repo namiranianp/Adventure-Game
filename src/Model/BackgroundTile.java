@@ -8,10 +8,7 @@ public class BackgroundTile{
 	BufferedImage image;
 	boolean walkable = true;
 	boolean player = false;
-<<<<<<< HEAD
-=======
-	final BufferedImage PLAYER = ImageIO.read(new File("images/"));
->>>>>>> ecfd0ecba29d36fd4fdc777c87cb3f5ee21b85f8
+
 	
 	//creates the image with whether or not it's walkable
 	public BackgroundTile(BufferedImage pic, boolean walk){
