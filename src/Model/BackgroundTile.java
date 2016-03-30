@@ -17,6 +17,7 @@ public class BackgroundTile {
 		image = pic;
 		walkable = walk;
 		try {
+			// image of our player
 			soldier = ImageIO.read(new File("images/temp_soldier.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -37,8 +38,9 @@ public class BackgroundTile {
 			return image;
 		}
 	}
-	
-	public void setPlayer(boolean isThere){
+
+	// boolean to say whether or not there is a player on this tile
+	public void setPlayer(boolean isThere) {
 		player = isThere;
 	}
 }
