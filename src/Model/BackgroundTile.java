@@ -1,28 +1,44 @@
 package Model;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
-public class BackgroundTile{
+import javax.imageio.ImageIO;
+
+public class BackgroundTile {
 	BufferedImage image;
 	boolean walkable = true;
 	boolean player = false;
+	BufferedImage soldier;
 
-	
-	//creates the image with whether or not it's walkable
-	public BackgroundTile(BufferedImage pic, boolean walk){
+	// creates the image with whether or not it's walkable
+	public BackgroundTile(BufferedImage pic, boolean walk) {
 		image = pic;
 		walkable = walk;
+		try {
+			soldier = ImageIO.read(new File("images/temp_soldier.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	//return whether or not it is walkable
-	public boolean canWalk(){
+
+	// return whether or not it is walkable
+	public boolean canWalk() {
 		return walkable;
 	}
+
+	// return the image of this tile
+	public BufferedImage getImage() {
+		if (player) {
+			return soldier;
+		} else {
+			return image;
+		}
+	}
 	
-	//return the image of this tile
-	public BufferedImage getImage(){
-		return image;
+	public void setPlayer(boolean isThere){
+		player = isThere;
 	}
 }
