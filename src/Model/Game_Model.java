@@ -1,11 +1,10 @@
 package Model;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
-import javax.imageio.ImageIO;
 
 public class Game_Model {
 	int xPos = 8;
@@ -13,7 +12,7 @@ public class Game_Model {
 	final static int BOARDSIZE = 10;
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 
-	public Game_Model() {
+    public Game_Model() {
 		fillBoard("board.txt");
 	}
 
@@ -42,7 +41,9 @@ public class Game_Model {
 			e.printStackTrace();
 		}
 	}
-	
+
+
+
 	//returns the board size (length = width)
 	public int getBoardSize(){
 		return BOARDSIZE;
@@ -59,4 +60,18 @@ public class Game_Model {
 	public int getYPos(){
 		return yPos;
 	}
+
+	public void move(int x, int y) {
+
+
+
+	}
+
+    public int getPosX() {
+        return xPos;
+    }
+
+    public int getPosY() {
+        return yPos;
+    }
 }
