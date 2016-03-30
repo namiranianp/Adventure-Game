@@ -1,14 +1,14 @@
 package Model;
 
-import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class BackgroundTile{
 	BufferedImage image;
 	boolean walkable = true;
 	boolean player = false;
-	final BufferedImage PLAYER = ImageIO.read(new File("images/"))
+	final BufferedImage PLAYER = ImageIO.read(new File("images/"));
 	
 	//creates the image with whether or not it's walkable
 	public BackgroundTile(BufferedImage pic, boolean walk){
