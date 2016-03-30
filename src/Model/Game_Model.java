@@ -12,7 +12,7 @@ public class Game_Model {
 	final static int BOARDSIZE = 10;
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 
-    public Game_Model() {
+	public Game_Model() {
 		fillBoard("board.txt");
 		gameBoard[xPos][yPos].setPlayer(true);
 	}
@@ -43,36 +43,41 @@ public class Game_Model {
 		}
 	}
 
-
-
-	//returns the board size (length = width)
-	public int getBoardSize(){
+	// returns the board size (length = width)
+	public int getBoardSize() {
 		return BOARDSIZE;
 	}
-	
-	//returns the image at the location requested
-	public BufferedImage getImage(int x, int y){
+
+	// returns the image at the location requested
+	public BufferedImage getImage(int x, int y) {
 		return gameBoard[y][x].getImage();
 	}
 
-	public int getXPos(){
+	public int getXPos() {
 		return xPos;
 	}
-	public int getYPos(){
+
+	public int getYPos() {
 		return yPos;
 	}
 
 	public void move(int x, int y) {
 
+		gameBoard[xPos][yPos].setPlayer(false);
 
+		if (gameBoard[x][y].canWalk()) {
+			xPos = x;
+			yPos = y;
+			gameBoard[xPos][yPos].setPlayer(true);
+		}
 
 	}
 
-    public int getPosX() {
-        return xPos;
-    }
+	public int getPosX() {
+		return xPos;
+	}
 
-    public int getPosY() {
-        return yPos;
-    }
+	public int getPosY() {
+		return yPos;
+	}
 }
