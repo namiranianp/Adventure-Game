@@ -14,6 +14,7 @@ public class Game_Model {
 
     public Game_Model() {
 		fillBoard("board.txt");
+        gameBoard[xPos][yPos].setPlayer(true);
 	}
 
 	// fills the game board with the map on the desired file
@@ -62,10 +63,16 @@ public class Game_Model {
 	}
 
 	public void move(int x, int y) {
+        
+        gameBoard[xPos][yPos].setPlayer(false);
 
+        if(gameBoard[x][y].canWalk()) {
+            xPos = x;
+            yPos = y;
+            gameBoard[xPos][yPos].setPlayer(true);
+        }
 
-
-	}
+    }
 
     public int getPosX() {
         return xPos;
