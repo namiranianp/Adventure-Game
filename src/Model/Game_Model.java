@@ -63,14 +63,19 @@ public class Game_Model {
 	}
 
 	public void move(int x, int y) {
-        
-        gameBoard[xPos][yPos].setPlayer(false);
 
         if(gameBoard[x][y].canWalk()) {
+            gameBoard[xPos][yPos].setPlayer(false);
             xPos = x;
             yPos = y;
             gameBoard[xPos][yPos].setPlayer(true);
         }
+
+    }
+
+    public boolean inBounds(int x, int y){
+
+        return (x>=0&&x<BOARDSIZE)&&(y>=0 && y<BOARDSIZE);
 
     }
 
