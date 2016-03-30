@@ -1,30 +1,28 @@
 package Model;
-import javax.swing.ImageIcon;
 
-/**
- * Represents a scenery tile intended to be used as a background tile in the game.
- * A BackgroundTile keeps track of whether or not it can be walked on.  If it can't
- * be walked on then the tile should act as a barrier.
- */
-public class BackgroundTile extends Tile {
+import java.awt.image.BufferedImage;
 
-	private boolean walkable;	// Determines whether this tile can be walked on
+import javax.imageio.ImageIO;
+
+public class BackgroundTile{
+	BufferedImage image;
+	boolean walkable = true;
+	boolean player = false;
+	final BufferedImage PLAYER = ImageIO.read(new File("images/"))
 	
-	public BackgroundTile(ImageIcon icon, String fileName) {
-		super(icon, fileName);
-		walkable = true;
+	//creates the image with whether or not it's walkable
+	public BackgroundTile(BufferedImage pic, boolean walk){
+		image = pic;
+		walkable = walk;
 	}
 	
-	public boolean getPropertyWalkable() {
+	//return whether or not it is walkable
+	public boolean canWalk(){
 		return walkable;
 	}
 	
-	public void setProertyWalkable(boolean newValue) {
-		walkable = newValue;
-	}
-	
-	@Override
-	public String toString() {
-		return "[" + getFileName() + " " + walkable + "]";
+	//return the image of this tile
+	public BufferedImage getImage(){
+		return image;
 	}
 }

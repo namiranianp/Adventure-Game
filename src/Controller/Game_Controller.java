@@ -26,12 +26,6 @@ public class Game_Controller {
 		return model.getBoardSize();
 	}
 
-	public void setBoardSize(int boardSize) {
-
-		model.setBoardSize(boardSize);
-
-	}
-
 	public int getBoardLength() {
 		return model.getBoardSize();
 	}
