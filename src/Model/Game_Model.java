@@ -14,6 +14,7 @@ public class Game_Model {
 
     public Game_Model() {
 		fillBoard("board.txt");
+		gameBoard[xPos][yPos].setPlayer(true);
 	}
 
 	// fills the game board with the map on the desired file
