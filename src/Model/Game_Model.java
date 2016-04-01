@@ -90,7 +90,7 @@ public class Game_Model {
 		if (world[globalX][globalY].isDarkened()) {
 			flashlight = true;
 			lightenBoard();
-		}else{
+		} else {
 			flashlight = false;
 		}
 	}
@@ -137,27 +137,27 @@ public class Game_Model {
 		if (y < 0) {
 			globalY--;
 			gameBoard[xPos][yPos].setPlayer(false);
-			yPos = BOARDSIZE-1;
-			gameBoard[xPos][yPos].setPlayer(true);
+			yPos = BOARDSIZE - 1;
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (y == BOARDSIZE) {
 			globalY++;
 			gameBoard[xPos][yPos].setPlayer(false);
 			yPos = 0;
-			gameBoard[xPos][yPos].setPlayer(true);
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (x < 0) {
 			globalX--;
 			gameBoard[xPos][yPos].setPlayer(false);
-			xPos = BOARDSIZE-1;
-			gameBoard[xPos][yPos].setPlayer(true);
+			xPos = BOARDSIZE - 1;
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (x == BOARDSIZE) {
 			globalX++;
 			gameBoard[xPos][yPos].setPlayer(false);
 			xPos = 0;
-			gameBoard[xPos][yPos].setPlayer(true);
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(true);
 		}
 
 	}
