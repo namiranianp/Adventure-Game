@@ -8,10 +8,10 @@ import java.io.IOException;
 public class BackgroundTile {
 	BufferedImage image;
 	BufferedImage soldier;
+	BufferedImage darkness;
 	boolean walkable = true;
 	boolean player = false;
-	
-	
+	boolean dark = false;
 
 	// creates the image with whether or not it's walkable
 	public BackgroundTile(BufferedImage pic, boolean walk) {
@@ -20,6 +20,8 @@ public class BackgroundTile {
 		try {
 			// image of our player
 			soldier = ImageIO.read(new File("images/temp_soldier.png"));
+			// black
+			darkness = ImageIO.read(new File("images/black.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,7 +37,9 @@ public class BackgroundTile {
 	public BufferedImage getImage() {
 		if (player) {
 			return soldier;
-		} else {
+		} else if(dark){
+			return darkness;
+		}else{
 			return image;
 		}
 	}
@@ -43,5 +47,10 @@ public class BackgroundTile {
 	// boolean to say whether or not there is a player on this tile
 	public void setPlayer(boolean isThere) {
 		player = isThere;
+	}
+
+	// changes whether or not a square is dark or not
+	public void setDark(boolean light) {
+		dark = light;
 	}
 }
