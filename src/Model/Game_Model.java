@@ -25,6 +25,7 @@ public class Game_Model {
 	public Game_Model(Game_Controller controller) {
 		fillBoard("board.txt");
 		darkenBoard();
+		lightArea();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 	}
