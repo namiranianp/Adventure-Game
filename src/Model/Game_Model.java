@@ -11,21 +11,24 @@ import java.util.Scanner;
 public class Game_Model {
 	private int xPos = 8;
 	private int yPos = 5;
-	private int hp = 3;
 
 	// use these values to edit the surrounding values
-	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
-	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
+	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0};
+	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1};
 
 	final static int BOARDSIZE = 10;
+	public BaseBoard[][] world = new BaseBoard[10][10];
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 	Game_Controller cont;
 	public boolean flashlight = true;
 
 	public Game_Model(Game_Controller controller) {
-		fillBoard("board.txt");
-		darkenBoard();
-		lightArea();
+		world[0][0] = new BaseBoard("board.txt", 0, true);
+		fillBoard(world[0][0].getFileName());
+		if (world[0][0].isDarkened()) {
+			flashlight = true;
+			lightenBoard();
+		}
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 	}
@@ -39,16 +42,16 @@ public class Game_Model {
 		}
 	}
 
-    //make the parts around it lighter
-    private void lightenBoard(){
-        darkenBoard();
-        for (int i = 0; i < horizontal.length; i++) {
-            if(inBounds(getPosX()+horizontal[i],getPosY()+vertical[i])){
-                gameBoard[getPosX()+horizontal[i]][getPosY()+vertical[i]].setDark(false);
-            }
-        }
+	// make the parts around it lighter
+	private void lightenBoard() {
+		darkenBoard();
+		for (int i = 0; i < horizontal.length; i++) {
+			if (inBounds(getPosX() + horizontal[i], getPosY() + vertical[i])) {
+				gameBoard[getPosX() + horizontal[i]][getPosY() + vertical[i]].setDark(false);
+			}
+		}
 
-    }
+	}
 
 	// fills the game board with the map on the desired file
 	private void fillBoard(String fileName) {
@@ -68,10 +71,10 @@ public class Game_Model {
 					} else {
 						gameBoard[j][i] = new BackgroundTile(pic, false);
 					}
+
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -103,20 +106,11 @@ public class Game_Model {
 			gameBoard[xPos][yPos].setPlayer(true);
 
 			if (flashlight) {
-                lightenBoard();
+				lightenBoard();
 			}
 
 		}
 
-	}
-
-	// This changes characters current health
-	public void editHealth(int change) {
-		hp += change;
-	}
-
-	public int getHealth() {
-		return hp;
 	}
 
 	// checks to see whether or not the desired location is within the board
