@@ -13,31 +13,33 @@ public class Game_Model {
 	private int yPos = 5;
 	private int hp = 3;
 
-    //use these values to edit the surrounding values
-    final int[] horizontal = {0,1,-1,1, 1,-1,-1,0, 0};
-    final int[] vertical =   {0,0, 0,1,-1, 1,-1,1,-1};
+	// use these values to edit the surrounding values
+	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
+	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
 
 	final static int BOARDSIZE = 10;
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
-    public int[][]  flashlightArray = new int[BOARDSIZE][BOARDSIZE];
-    Game_Controller cont;
+	Game_Controller cont;
+	public boolean flashlight = true;
 
 	public Game_Model(Game_Controller controller) {
 		fillBoard("board.txt");
+		darkenBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
-        cont = controller;
+		cont = controller;
+	}
+
+	// turns everything dark
+	private void darkenBoard() {
+		for (int i = 0; i < BOARDSIZE; i++) {
+			for (int j = 0; j < BOARDSIZE; j++) {
+				gameBoard[i][j].setDark(true);
+			}
+		}
 	}
 
 	// fills the game board with the map on the desired file
 	private void fillBoard(String fileName) {
-
-        //All of the positions are "not lit"
-        for (int i = 0; i < flashlightArray.length; i++) {
-            for (int j = 0; j < flashlightArray.length; j++) {
-                flashlightArray[i][j] = 0;
-            }
-        }
-
 		try {
 			Scanner read = new Scanner(new File("Boards/" + fileName));
 			for (int i = 0; i < BOARDSIZE; i++) {
@@ -60,16 +62,17 @@ public class Game_Model {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
-        //make a 3x3 boundary around player as "Flashlight"
-        for (int i = 0; i < horizontal.length; i++) {
-            if(inBounds(getPosX()+horizontal[i] , getPosY()+vertical[i])){
+	public void lightArea() {
+		// make a 3x3 boundary around player as "Flashlight"
+		for (int i = 0; i < horizontal.length; i++) {
+			if (inBounds(getPosX() + horizontal[i], getPosY() + vertical[i])) {
 
-                flashlightArray[getPosX()+horizontal[i]][getPosY()+vertical[i]] = 1;
+				gameBoard[getPosX() + horizontal[i]][getPosY() + vertical[i]].setDark(false);
 
-            }
-        }
-
+			}
+		}
 	}
 
 	// returns the board size (length = width)
@@ -98,31 +101,27 @@ public class Game_Model {
 			yPos = y;
 			gameBoard[xPos][yPos].setPlayer(true);
 
-            //reset the array
-            for (int i = 0; i < flashlightArray.length; i++) {
-                for (int j = 0; j < flashlightArray.length; j++) {
-                    flashlightArray[i][j] = 0;
-                }
-            }
+			if (flashlight) {
+				// set flashlight from new pos
+				for (int i = 0; i < horizontal.length; i++) {
+					if (inBounds(getPosX() + horizontal[i], getPosY() + vertical[i])) {
 
-            //set flashlight from new pos
-            for (int i = 0; i < horizontal.length; i++) {
-                if(inBounds(getPosX()+horizontal[i] , getPosY()+vertical[i])){
+						lightArea();
 
-                    flashlightArray[getPosX()+horizontal[i]][getPosY()+vertical[i]] = 1;
-
-                }
-            }
+					}
+				}
+			}
 
 		}
 
 	}
-	
-	//This changes characters current health
-	public void editHealth(int change){
+
+	// This changes characters current health
+	public void editHealth(int change) {
 		hp += change;
 	}
-	public int getHealth(){
+
+	public int getHealth() {
 		return hp;
 	}
 
@@ -131,11 +130,9 @@ public class Game_Model {
 		return (x >= 0 && x < BOARDSIZE) && (y >= 0 && y < BOARDSIZE);
 	}
 
-
 	public int getPosX() {
 		return xPos;
 	}
-
 
 	public int getPosY() {
 		return yPos;

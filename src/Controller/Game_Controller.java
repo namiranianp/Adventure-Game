@@ -15,11 +15,7 @@ public class Game_Controller {
 		model = new Game_Model(this);
 		view = new Game_View(this);
 		view.addKeyAdapter(new CustomKeyAdapter(model, view));
-        setFlashlight(true);
-	}
-
-	public int[][] getFlashlightArr(){
-		return model.flashlightArray;
+		setFlashlight(true);
 	}
 
 	public BufferedImage getImage(int row, int col) {
@@ -34,8 +30,8 @@ public class Game_Controller {
 		return model.getBoardSize();
 	}
 
-    //Sets the flashlight to on or off
-	public void setFlashlight(boolean flashlight){
+	// Sets the flashlight to on or off
+	public void setFlashlight(boolean flashlight) {
 		view.setFlashLight(flashlight);
 	}
 
