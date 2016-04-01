@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class BackgroundTile {
 	BufferedImage image;
-	BufferedImage soldier;
-	BufferedImage darkness;
+	static BufferedImage soldier;
+	static BufferedImage darkness;
 	boolean walkable = true;
 	boolean player = false;
 	boolean dark = false;
@@ -18,10 +18,12 @@ public class BackgroundTile {
 		image = pic;
 		walkable = walk;
 		try {
-			// image of our player
-			soldier = ImageIO.read(new File("images/temp_soldier.png"));
-			// black
-			darkness = ImageIO.read(new File("images/black.png"));
+			if (soldier == null) {
+				// image of our player
+				soldier = ImageIO.read(new File("images/temp_soldier.png"));
+				// black
+				darkness = ImageIO.read(new File("images/black.png"));
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

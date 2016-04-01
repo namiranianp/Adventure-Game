@@ -35,7 +35,7 @@ public class Game_Model {
 
 	public Game_Model(Game_Controller controller) {
 		world[9][1] = new BaseBoard("board.txt", 0, false);
-		world[9][0] = new BaseBoard("testing.txt", 0, false);
+		world[9][0] = new BaseBoard("testing.txt", 0, true);
 		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
@@ -90,6 +90,8 @@ public class Game_Model {
 		if (world[globalX][globalY].isDarkened()) {
 			flashlight = true;
 			lightenBoard();
+		} else {
+			flashlight = false;
 		}
 	}
 
@@ -134,27 +136,27 @@ public class Game_Model {
 
 		if (y < 0) {
 			globalY--;
-			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(false);
-			yPos = BOARDSIZE-1;
+			yPos = BOARDSIZE - 1;
+			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (y == BOARDSIZE) {
 			globalY++;
-			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(false);
 			yPos = 0;
+			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (x < 0) {
 			globalX--;
-			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(false);
-			xPos = BOARDSIZE-1;
+			xPos = BOARDSIZE - 1;
+			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (x == BOARDSIZE) {
 			globalX++;
-			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(false);
 			xPos = 0;
+			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(true);
 		}
 
