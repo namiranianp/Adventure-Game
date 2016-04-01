@@ -21,13 +21,12 @@ public class Game_Model {
 	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
 	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
 
-	//variables to show where the player is trying to exit the board
+	// variables to show where the player is trying to exit the board
 	final int UP = 0;
-	final int DOWN = 3;
-	final int LEFT = 4;
-	final int RIGHT = 2;
-	
-	
+	final int DOWN = 2;
+	final int LEFT = 3;
+	final int RIGHT = 1;
+
 	final static int BOARDSIZE = 10;
 	public BaseBoard[][] world = new BaseBoard[10][10];
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
@@ -35,8 +34,9 @@ public class Game_Model {
 	public boolean flashlight = false;
 
 	public Game_Model(Game_Controller controller) {
-		world[9][1] = new BaseBoard("board.txt", 0, true);
-		fillBoard(globalX, globalY);
+		world[9][1] = new BaseBoard("board.txt", 0, false);
+		world[9][0] = new BaseBoard("testing.txt", 0, false);
+		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 	}
@@ -62,8 +62,8 @@ public class Game_Model {
 	}
 
 	// fills the game board with the map on the desired file
-	private void fillBoard(int worldX, int worldY) {
-		String fileName = world[worldX][worldY].getFileName();
+	private void fillBoard() {
+		String fileName = world[globalX][globalY].getFileName();
 		try {
 			Scanner read = new Scanner(new File("Boards/" + fileName));
 			for (int i = 0; i < BOARDSIZE; i++) {
@@ -87,7 +87,7 @@ public class Game_Model {
 			e.printStackTrace();
 		}
 
-		if (world[worldX][worldY].isDarkened()) {
+		if (world[globalX][globalY].isDarkened()) {
 			flashlight = true;
 			lightenBoard();
 		}
@@ -125,7 +125,27 @@ public class Game_Model {
 
 		}
 		if (!inBounds(x, y)) {
+			switchBoard(x, y);
+		}
 
+	}
+
+	private void switchBoard(int x, int y) {
+
+		if (y < 0) {
+			globalY--;
+			fillBoard();
+			yPos = BOARDSIZE-1;
+			gameBoard[xPos][yPos].setPlayer(true);
+		} else if (y == BOARDSIZE) {
+			globalY++;
+			fillBoard();
+		} else if (x < 0) {
+			globalX--;
+			fillBoard();
+		} else if (x == BOARDSIZE) {
+			globalX++;
+			fillBoard();
 		}
 
 	}
