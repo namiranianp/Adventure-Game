@@ -135,17 +135,27 @@ public class Game_Model {
 		if (y < 0) {
 			globalY--;
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(false);
 			yPos = BOARDSIZE-1;
 			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (y == BOARDSIZE) {
 			globalY++;
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(false);
+			yPos = 0;
+			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (x < 0) {
 			globalX--;
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(false);
+			xPos = BOARDSIZE-1;
+			gameBoard[xPos][yPos].setPlayer(true);
 		} else if (x == BOARDSIZE) {
 			globalX++;
 			fillBoard();
+			gameBoard[xPos][yPos].setPlayer(false);
+			xPos = 0;
+			gameBoard[xPos][yPos].setPlayer(true);
 		}
 
 	}
