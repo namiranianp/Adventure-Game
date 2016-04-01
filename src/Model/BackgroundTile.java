@@ -37,6 +37,8 @@ public class BackgroundTile {
 	public BufferedImage getImage() {
 		if (player) {
 			return soldier;
+		} else if (dark) {
+			return darkness;
 		}
 		return image;
 	}
@@ -47,7 +49,7 @@ public class BackgroundTile {
 	}
 
 	// changes whether or not a square is dark or not
-	public void setDark(boolean light) {
-		dark = light;
+	public void setDark(boolean isDark) {
+		dark = isDark;
 	}
 }
