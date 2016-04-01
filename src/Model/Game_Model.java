@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Game_Model {
 	int xPos = 8;
 	int yPos = 5;
+	int hp = 3;
 	final static int BOARDSIZE = 10;
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 
@@ -70,6 +71,14 @@ public class Game_Model {
 			gameBoard[xPos][yPos].setPlayer(true);
 		}
 
+	}
+	
+	//This changes characters current health
+	public void editHealth(int change){
+		hp += change;
+	}
+	public int getHealth(){
+		return hp;
 	}
 
 	// checks to see whether or not the desired location is within the board
