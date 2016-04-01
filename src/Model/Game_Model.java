@@ -9,26 +9,34 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Game_Model {
-	private int xPos = 8;
-	private int yPos = 5;
+	// player's positions on the game board
+	private int xPos = 7;
+	private int yPos = 4;
+
+	// player's positions in the world array
+	private int globalX = 9;
+	private int globalY = 1;
 
 	// use these values to edit the surrounding values
-	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0};
-	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1};
+	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
+	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
 
+	//variables to show where the player is trying to exit the board
+	final int UP = 0;
+	final int DOWN = 3;
+	final int LEFT = 4;
+	final int RIGHT = 2;
+	
+	
 	final static int BOARDSIZE = 10;
 	public BaseBoard[][] world = new BaseBoard[10][10];
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 	Game_Controller cont;
-	public boolean flashlight = true;
+	public boolean flashlight = false;
 
 	public Game_Model(Game_Controller controller) {
-		world[0][0] = new BaseBoard("board.txt", 0, true);
-		fillBoard(world[0][0].getFileName());
-		if (world[0][0].isDarkened()) {
-			flashlight = true;
-			lightenBoard();
-		}
+		world[9][1] = new BaseBoard("board.txt", 0, true);
+		fillBoard(globalX, globalY);
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 	}
@@ -54,7 +62,8 @@ public class Game_Model {
 	}
 
 	// fills the game board with the map on the desired file
-	private void fillBoard(String fileName) {
+	private void fillBoard(int worldX, int worldY) {
+		String fileName = world[worldX][worldY].getFileName();
 		try {
 			Scanner read = new Scanner(new File("Boards/" + fileName));
 			for (int i = 0; i < BOARDSIZE; i++) {
@@ -76,6 +85,11 @@ public class Game_Model {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+
+		if (world[worldX][worldY].isDarkened()) {
+			flashlight = true;
+			lightenBoard();
 		}
 	}
 
@@ -108,6 +122,9 @@ public class Game_Model {
 			if (flashlight) {
 				lightenBoard();
 			}
+
+		}
+		if (!inBounds(x, y)) {
 
 		}
 
