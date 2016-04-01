@@ -1,21 +1,23 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JPanel;
-
 import Controller.Game_Controller;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel {
 	Game_Controller control;
+	Game_View view;
 	final int LINE = 60;
 	final int NUMSQUARES = 10;
+	int[][] flash;
 
 	// SO IT CAN ASK CONTROLLER FOR IMAGES
-	GamePanel(Game_Controller c) {
+	GamePanel(Game_Controller c, Game_View v) {
 		control = c;
+		view = v;
+		flash = control.getFlashlightArr();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -26,9 +28,17 @@ public class GamePanel extends JPanel {
 		// ASK FOR, AND DRAW IMAGES, SQUARE BY SQUARE
 		for (int i = 0; i < NUMSQUARES; i++) {
 			for (int j = 0; j < NUMSQUARES; j++) {
-			BufferedImage pic = control.getImage(j,i);
-			g.drawImage(pic, 20+(i*LINE), 40+(j*LINE), LINE, LINE, null);
+				//works if the flashlight is on
+				if(view.flashlight && flash[i][j] == 1){
+
+					BufferedImage pic = control.getImage(j,i);
+					g.drawImage(pic, 20+(i*LINE), 40+(j*LINE), LINE, LINE, null);
+
+				}
 			}
 		}
+
+
+
 	}
 }

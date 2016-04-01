@@ -35,9 +35,8 @@ public class BackgroundTile {
 	public BufferedImage getImage() {
 		if (player) {
 			return soldier;
-		} else {
-			return image;
 		}
+		return image;
 	}
 
 	// boolean to say whether or not there is a player on this tile
