@@ -1,15 +1,16 @@
 package View;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-
 import Controller.CustomKeyAdapter;
 import Controller.Game_Controller;
+
+import javax.swing.*;
 
 public class Game_View {
 	Game_Controller control;
 	public JFrame window;
 	public GamePanel gameBoard;
+    boolean flashlight;
+
 
 	public Game_View(Game_Controller c) {
 		control = c;
@@ -17,7 +18,7 @@ public class Game_View {
 		window = new JFrame();
 		window.setBounds(100, 20, 655, 700);
 
-		gameBoard = new GamePanel(control);
+		gameBoard = new GamePanel(control,this);
 
 		// LAST
 		window.getContentPane().add(gameBoard);
@@ -30,4 +31,12 @@ public class Game_View {
 
 		window.addKeyListener(listen);
 	}
+
+	//Turns on the flashlight or off
+	public void setFlashLight(boolean flashlightState){
+
+        flashlight = flashlightState;
+
+    }
+
 }

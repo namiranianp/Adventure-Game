@@ -1,7 +1,8 @@
 /bin/
-
-.idea
-.classpath
-.project
+*.bluej
+*.idea
+*.classpath
+*.project
 /out/
 *.iml
+*.class
