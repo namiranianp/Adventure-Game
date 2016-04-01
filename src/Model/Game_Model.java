@@ -39,6 +39,17 @@ public class Game_Model {
 		}
 	}
 
+    //make the parts around it lighter
+    private void lightenBoard(){
+        darkenBoard();
+        for (int i = 0; i < horizontal.length; i++) {
+            if(inBounds(getPosX()+horizontal[i],getPosY()+vertical[i])){
+                gameBoard[getPosX()+horizontal[i]][getPosY()+vertical[i]].setDark(false);
+            }
+        }
+
+    }
+
 	// fills the game board with the map on the desired file
 	private void fillBoard(String fileName) {
 		try {
@@ -62,17 +73,6 @@ public class Game_Model {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-
-	public void lightArea() {
-		// make a 3x3 boundary around player as "Flashlight"
-		for (int i = 0; i < horizontal.length; i++) {
-			if (inBounds(getPosX() + horizontal[i], getPosY() + vertical[i])) {
-
-				gameBoard[getPosX() + horizontal[i]][getPosY() + vertical[i]].setDark(false);
-
-			}
 		}
 	}
 
@@ -103,14 +103,7 @@ public class Game_Model {
 			gameBoard[xPos][yPos].setPlayer(true);
 
 			if (flashlight) {
-				// set flashlight from new pos
-				for (int i = 0; i < horizontal.length; i++) {
-					if (inBounds(getPosX() + horizontal[i], getPosY() + vertical[i])) {
-
-						lightArea();
-
-					}
-				}
+                lightenBoard();
 			}
 
 		}
