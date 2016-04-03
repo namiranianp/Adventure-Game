@@ -1,5 +1,6 @@
 package Model;
 
+<<<<<<< HEAD
 
 public class Creature {
 
@@ -49,4 +50,16 @@ public boolean talkable(){
   return false;
 }
 */
+=======
+public class Creature {
+	String name;
+
+	public Creature(String imageName) {
+		name = imageName;
+	}
+	
+	public String getName(){
+		return name;
+	}
+>>>>>>> f7acd6a9aa42a97d6924e5b3752fa5f0e289d5ec
 }
