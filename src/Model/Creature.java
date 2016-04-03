@@ -1,11 +1,10 @@
 package Model;
 
-int hp = 3, atk = 1;
-String name;
-boolean canDrop, canTalk, respawnable;
-//Add different movement types
-
 public class Creature {
+  int hp = 3, atk = 1;
+  String name;
+  boolean canDrop, canTalk, respawnable;
+  //Add different movement types
   public Creature{
     name = "generic npc name";
     canDrop = false;
