@@ -20,6 +20,12 @@ public class Game_View {
 
 		gameBoard = new GamePanel(control,this);
 
+		//HTML Pages
+		JMenuBar menu = new JMenuBar();
+		window.setJMenuBar(menu);
+		JMenu about = new JMenu("About");
+		JMenuItem howToPlay = new JMenuItem("How to play");
+
 		// LAST
 		window.getContentPane().add(gameBoard);
 		window.setVisible(true);
