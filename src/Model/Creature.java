@@ -1,7 +1,7 @@
 package Model;
 
 public class Creature {
-	String name;
+	public String name;
 
 	public Creature(String imageName) {
 		name = imageName;
