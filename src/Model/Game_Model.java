@@ -35,7 +35,7 @@ public class Game_Model {
 
 	public Game_Model(Game_Controller controller) {
 		world[9][1] = new BaseBoard("board.txt", 0, false);
-		world[9][0] = new BaseBoard("testing.txt", 0, true);
+		world[9][0] = new BaseBoard("testing.txt", 0, false);
 		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
