@@ -7,10 +7,9 @@ import java.io.IOException;
 
 public class BackgroundTile {
 	BufferedImage image, topImage;
-	static BufferedImage soldier, darkness;
-	boolean walkable = true;
-	boolean player = false;
-	boolean dark = false;
+	static BufferedImage soldier, darkness, powerUp, pot;
+	boolean walkable;
+	boolean player, dark, power, health;
 	HostileCreature bad = null;
 
 	// creates the image with whether or not it's walkable
@@ -23,9 +22,12 @@ public class BackgroundTile {
 				soldier = ImageIO.read(new File("images/temp_soldier.png"));
 				// black
 				darkness = ImageIO.read(new File("images/black.png"));
+				// health pot
+				// pot = ImageIO.read(new File("images/potion.png"));
+				// powerUp
+				// powerUp = ImageIO.read(new File("images/powerUp.png));
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -63,6 +65,10 @@ public class BackgroundTile {
 			return darkness;
 		} else if (topImage != null) {
 			return topImage;
+		} else if (power) {
+			return powerUp;
+		} else if (health) {
+			return pot;
 		}
 		return image;
 	}

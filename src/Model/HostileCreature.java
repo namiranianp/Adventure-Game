@@ -50,7 +50,8 @@ public class HostileCreature extends Creature {
 	public void changeHealth(int hp) {
 		health -= hp;
 		if (health <= 0) {
-			// TODO
+			model.gameBoard[xPos][yPos].clearCreature();
+			
 		}
 	}
 

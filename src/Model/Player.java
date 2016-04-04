@@ -6,7 +6,7 @@ public class Player {
 	private int direction = 4; // up = 1 right = 2 down = 3 left = 4
 	private int health = 50;
 	Game_Controller control;
-	Weapon equipped;
+	int attack = 1;
 
 	public Player(Game_Controller c) {
 		control = c;
@@ -34,12 +34,12 @@ public class Player {
 	//
 
 	//
-	public void equip(Weapon e) {
-		equipped = e;
+	public int getDamage() {
+		return attack;
 	}
 
-	public Weapon getEquip() {
-		return equipped;
+	public void upDamage() {
+		attack++;
 	}
 	//
 }
