@@ -5,9 +5,7 @@ public class Item {
 	int buyValue;
 	int sellValue;
 
-	boolean equiped;
-
-	public Item(String itemName, int buy, int sell, boolean isEquiped) {
+	public Item(String itemName, int buy, int sell) {
 		name = itemName;
 		buyValue = buy;
 		sellValue = sell;

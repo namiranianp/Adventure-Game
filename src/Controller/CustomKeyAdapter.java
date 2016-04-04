@@ -35,15 +35,19 @@ public class CustomKeyAdapter extends KeyAdapter {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			model.move(x, y - 1);
 			view.window.repaint();
+			model.setDirection(model.UP);
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			model.move(x, y + 1);
 			view.window.repaint();
+			model.setDirection(model.DOWN);
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			model.move(x - 1, y);
 			view.window.repaint();
+			model.setDirection(model.LEFT);
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			model.move(x + 1, y);
 			view.window.repaint();
+			model.setDirection(model.RIGHT);
 		}
 	}
 
@@ -59,15 +63,19 @@ public class CustomKeyAdapter extends KeyAdapter {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			model.move(x, y - 1);
 			view.window.repaint();
+			model.setDirection(model.UP);
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			model.move(x, y + 1);
 			view.window.repaint();
+			model.setDirection(model.DOWN);
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			model.move(x - 1, y);
 			view.window.repaint();
+			model.setDirection(model.LEFT);
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			model.move(x + 1, y);
 			view.window.repaint();
+			model.setDirection(model.RIGHT);
 		}
 	}
 

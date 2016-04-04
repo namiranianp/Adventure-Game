@@ -6,9 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class BackgroundTile {
-	BufferedImage image;
-	static BufferedImage soldier;
-	static BufferedImage darkness;
+	BufferedImage image, topImage;
+	static BufferedImage soldier, darkness;
 	boolean walkable = true;
 	boolean player = false;
 	boolean dark = false;
@@ -41,10 +40,19 @@ public class BackgroundTile {
 			return soldier;
 		} else if (dark) {
 			return darkness;
+		} else if(topImage !=null){
+			return topImage;
 		}
 		return image;
 	}
 
+	public void setTopImage(BufferedImage pic){
+		topImage = pic;
+	}
+	public void clearTopImage(){
+		topImage = null;
+	}
+	
 	// boolean to say whether or not there is a player on this tile
 	public void setPlayer(boolean isThere) {
 		player = isThere;
