@@ -1,10 +1,10 @@
 package Controller;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import Model.Game_Model;
 import View.Game_View;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * Write a description of class PersonalActionListener here.
@@ -56,6 +56,22 @@ public class CustomKeyAdapter extends KeyAdapter {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 
 		}
+
+		//Enemy Drops
+		if(model.gameBoard[model.getXPos()][model.getYPos()].isHealth()){
+
+			model.guy.changeHealth(model.guy.getHealth() + 2);
+			model.gameBoard[model.getXPos()][model.getYPos()].setHealth(false);
+			view.window.repaint();
+
+		}else if(model.gameBoard[model.getXPos()][model.getYPos()].isPower()){
+
+			model.guy.upDamage();
+			model.gameBoard[model.getXPos()][model.getYPos()].setPower(false);
+			view.window.repaint();
+
+		}
+
 	}
 
 	@Override
