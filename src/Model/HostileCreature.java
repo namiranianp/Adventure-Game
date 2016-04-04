@@ -6,16 +6,14 @@ import java.util.Random;
 public class HostileCreature extends Creature {
 	private int health;
 	private int attack;
-	private Weapon gun = null;
 	private int xPos;
 	private int yPos;
 	Game_Model model;
 
-	public HostileCreature(String imageName, int hp, int atk, Weapon g, Game_Model m) {
+	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
 		super(imageName);
 		health = hp;
 		attack = atk;
-		gun = g;
 		model = m;
 	}
 
@@ -64,8 +62,5 @@ public class HostileCreature extends Creature {
 		return attack;
 	}
 
-	public Weapon getWeapon() {
-		return gun;
-	}
 
 }

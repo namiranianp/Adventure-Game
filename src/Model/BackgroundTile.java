@@ -9,7 +9,27 @@ public class BackgroundTile {
 	BufferedImage image, topImage;
 	static BufferedImage soldier, darkness, powerUp, pot;
 	boolean walkable;
-	boolean player, dark, power, health;
+	boolean player;
+	boolean dark;
+
+	public boolean isPower() {
+		return power;
+	}
+
+	public void setPower(boolean power) {
+		this.power = power;
+	}
+
+	public boolean isHealth() {
+		return health;
+	}
+
+	public void setHealth(boolean health) {
+		this.health = health;
+	}
+
+	boolean power;
+	boolean health;
 	HostileCreature bad = null;
 
 	// creates the image with whether or not it's walkable
@@ -19,13 +39,13 @@ public class BackgroundTile {
 		try {
 			if (soldier == null) {
 				// image of our player
-				soldier = ImageIO.read(new File("images/temp_soldier.png"));
+				soldier = ImageIO.read(new File("images/player.png"));
 				// black
 				darkness = ImageIO.read(new File("images/black.png"));
 				// health pot
-				// pot = ImageIO.read(new File("images/potion.png"));
+				pot = ImageIO.read(new File("images/potion.png"));
 				// powerUp
-				// powerUp = ImageIO.read(new File("images/powerUp.png));
+				powerUp = ImageIO.read(new File("images/powerUp.png"));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

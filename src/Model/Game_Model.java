@@ -29,12 +29,12 @@ public class Game_Model {
 
 	final static int BOARDSIZE = 10;
 	public BaseBoard[][] world = new BaseBoard[10][5];
-	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
+	public BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 	Game_Controller cont;
 	public boolean flashlight = false;
 
 	// player object
-	Player guy;
+	public Player guy;
 
 	public Game_Model(Game_Controller controller) {
 		makeAllBoards();
