@@ -48,6 +48,12 @@ public class Game_Model {
 		world[9][1] = new BaseBoard("board.txt", 0, false, null);
 		world[9][0] = new BaseBoard("topRight.txt", 0, false, null);
 		world[8][0] = new BaseBoard("[8][0].txt", 0, false, null);
+		world[7][0] = new BaseBoard("[7][0].txt", 0, false, null);
+		world[6][0] = new BaseBoard("[6][0].txt", 0, false, null);
+		world[5][0] = new BaseBoard("[5][0].txt", 0, false, null);
+		world[4][0] = new BaseBoard("[4][0].txt", 0, false, null);
+		world[3][0] = new BaseBoard("[3][0].txt", 0, false, null);
+		world[2][0] = new BaseBoard("[2][0].txt", 0, false, null);
 	}
 
 	public void shoot() {
