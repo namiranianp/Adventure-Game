@@ -7,32 +7,39 @@ public class Player {
 	private int health = 50;
 	Game_Controller control;
 	Weapon equipped;
-	
-	public Player(Game_Controller c){
+
+	public Player(Game_Controller c) {
 		control = c;
 	}
-	
+
 	public void setDirection(int facing) {
 		direction = facing;
 	}
-	public int getDirection(){
+
+	public int getDirection() {
 		return direction;
 	}
-	
-	public void changeHealth(int change){
+
+	//
+	public void changeHealth(int change) {
 		health += change;
-		if(health <= 0){
-			
+		if (health <= 0) {
+			// TODO
 		}
 	}
-	public int getHealth(){
+
+	public int getHealth() {
 		return health;
 	}
-	
-	public void equip(Weapon e){
+	//
+
+	//
+	public void equip(Weapon e) {
 		equipped = e;
 	}
-	public Weapon getEquip(){
+
+	public Weapon getEquip() {
 		return equipped;
 	}
+	//
 }
