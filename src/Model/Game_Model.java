@@ -21,11 +21,11 @@ public class Game_Model {
 	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
 	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
 
-	// variables to show where the player is trying to exit the board
-	final int UP = 0;
-	final int DOWN = 2;
-	final int LEFT = 3;
-	final int RIGHT = 1;
+	// final variables for the directions
+	final public int UP = 1;
+	final public int DOWN = 3;
+	final public int LEFT = 4;
+	final public int RIGHT = 2;
 
 	final static int BOARDSIZE = 10;
 	public BaseBoard[][] world = new BaseBoard[10][10];
@@ -33,12 +33,20 @@ public class Game_Model {
 	Game_Controller cont;
 	public boolean flashlight = false;
 
+	//player object
+	Player guy;
+
 	public Game_Model(Game_Controller controller) {
 		world[9][1] = new BaseBoard("board.txt", 0, false);
 		world[9][0] = new BaseBoard("testing.txt", 0, false);
 		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
+		guy = new Player(cont);
+	}
+
+	public void setDirection(int direction) {
+		guy.setDirection(direction);
 	}
 
 	// turns everything dark
