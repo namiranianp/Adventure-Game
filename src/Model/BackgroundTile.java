@@ -6,12 +6,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class BackgroundTile {
-	BufferedImage image;
-	static BufferedImage soldier;
-	static BufferedImage darkness;
-	boolean walkable = true;
-	boolean player = false;
-	boolean dark = false;
+	BufferedImage image, topImage;
+	static BufferedImage soldier, darkness, powerUp, pot;
+	boolean walkable;
+	boolean player, dark, power, health;
+	HostileCreature bad = null;
 
 	// creates the image with whether or not it's walkable
 	public BackgroundTile(BufferedImage pic, boolean walk) {
@@ -23,12 +22,35 @@ public class BackgroundTile {
 				soldier = ImageIO.read(new File("images/temp_soldier.png"));
 				// black
 				darkness = ImageIO.read(new File("images/black.png"));
+				// health pot
+				// pot = ImageIO.read(new File("images/potion.png"));
+				// powerUp
+				// powerUp = ImageIO.read(new File("images/powerUp.png));
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	//
+	public void setCreature(HostileCreature b) {
+		bad = b;
+		setTopImage(bad.getpic());
+	}
+
+	public boolean hasCreature() {
+		return bad != null;
+	}
+
+	public void clearCreature() {
+		clearTopImage();
+		bad = null;
+	}
+
+	public HostileCreature getCreature() {
+		return bad;
+	}
+	//
 
 	// return whether or not it is walkable
 	public boolean canWalk() {
@@ -41,8 +63,22 @@ public class BackgroundTile {
 			return soldier;
 		} else if (dark) {
 			return darkness;
+		} else if (topImage != null) {
+			return topImage;
+		} else if (power) {
+			return powerUp;
+		} else if (health) {
+			return pot;
 		}
 		return image;
+	}
+
+	public void setTopImage(BufferedImage pic) {
+		topImage = pic;
+	}
+
+	public void clearTopImage() {
+		topImage = null;
 	}
 
 	// boolean to say whether or not there is a player on this tile
