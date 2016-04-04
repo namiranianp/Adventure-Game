@@ -33,6 +33,7 @@ public class BackgroundTile {
 	//
 	public void setCreature(HostileCreature b) {
 		bad = b;
+		setTopImage(bad.getpic());
 	}
 
 	public boolean hasCreature() {
@@ -40,6 +41,7 @@ public class BackgroundTile {
 	}
 
 	public void clearCreature() {
+		clearTopImage();
 		bad = null;
 	}
 
