@@ -1,4 +1,4 @@
-[rock.png true] [rock.png false] [rock.png false] [rock.png false] [rock.png true] [rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] 
+[rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] [rock.png false] 
 [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [rock.png false] [rock.png false] [rock.png false] [rock.png false] 
 [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] 
 [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] [ground.png true] 
