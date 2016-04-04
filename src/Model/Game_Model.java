@@ -28,7 +28,7 @@ public class Game_Model {
 	final public int RIGHT = 2;
 
 	final static int BOARDSIZE = 10;
-	public BaseBoard[][] world = new BaseBoard[10][10];
+	public BaseBoard[][] world = new BaseBoard[10][5];
 	BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 	Game_Controller cont;
 	public boolean flashlight = false;
@@ -45,8 +45,8 @@ public class Game_Model {
 	}
 
 	private void makeAllBoards() {
-		world[9][1] = new BaseBoard("board.txt", 0, false, null);
-		world[9][0] = new BaseBoard("topRight.txt", 0, false, null);
+		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
+		world[9][0] = new BaseBoard("[9][0].txt", 0, false, null);
 		world[8][0] = new BaseBoard("[8][0].txt", 0, false, null);
 		world[7][0] = new BaseBoard("[7][0].txt", 0, false, null);
 		world[6][0] = new BaseBoard("[6][0].txt", 0, false, null);
@@ -54,6 +54,7 @@ public class Game_Model {
 		world[4][0] = new BaseBoard("[4][0].txt", 0, false, null);
 		world[3][0] = new BaseBoard("[3][0].txt", 0, false, null);
 		world[2][0] = new BaseBoard("[2][0].txt", 0, false, null);
+		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
 	}
 
 	public void shoot() {
