@@ -59,12 +59,13 @@ public class Game_Model {
 		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
 		world[6][1] = new BaseBoard("[6][1].txt", 0, false, null);
+		world[5][1] = new BaseBoard("[5][1].txt", 0, false, null);
 		world[0][1] = new BaseBoard("[0][1].txt", 0, false, null);
 		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
 		world[0][3] = new BaseBoard("[0][4].txt", 0, false, null);
 		world[1][3] = new BaseBoard("bottom.txt", 0, false, null);
 		world[2][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[3][3] = new BaseBoard("bottom.txt", 0, false, null);
+		//TODO world[3][3] = new BaseBoard("bottom.txt", 0, false, null);
 		world[4][3] = new BaseBoard("bottom.txt", 0, false, null);
 		world[5][3] = new BaseBoard("bottom.txt", 0, false, null);
 		world[6][3] = new BaseBoard("bottom.txt", 0, false, null);
