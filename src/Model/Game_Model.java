@@ -28,7 +28,7 @@ public class Game_Model {
 	final public int RIGHT = 2;
 
 	final static int BOARDSIZE = 10;
-	public BaseBoard[][] world = new BaseBoard[10][5];
+	public BaseBoard[][] world = new BaseBoard[10][4];
 	public BackgroundTile[][] gameBoard = new BackgroundTile[BOARDSIZE][BOARDSIZE];
 	Game_Controller cont;
 	public boolean flashlight = false;
@@ -45,7 +45,6 @@ public class Game_Model {
 	}
 
 	private void makeAllBoards() {
-		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
 		world[9][0] = new BaseBoard("[9][0].txt", 0, false, null);
 		world[8][0] = new BaseBoard("[8][0].txt", 0, false, null);
 		world[7][0] = new BaseBoard("[7][0].txt", 0, false, null);
@@ -55,6 +54,24 @@ public class Game_Model {
 		world[3][0] = new BaseBoard("[3][0].txt", 0, false, null);
 		world[2][0] = new BaseBoard("[2][0].txt", 0, false, null);
 		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
+		world[0][0] = new BaseBoard("[0][0].txt", 0, false, null);
+		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
+		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
+		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
+		world[6][1] = new BaseBoard("[6][1].txt", 0, false, null);
+		world[0][1] = new BaseBoard("[0][1].txt", 0, false, null);
+		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
+		world[0][3] = new BaseBoard("[0][4].txt", 0, false, null);
+		world[1][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[2][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[3][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[4][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[5][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[6][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[7][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[8][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[9][3] = new BaseBoard("corner.txt", 0, false, null);
+		world[9][2] = new BaseBoard("[9][2].txt", 0, false, null);
 	}
 
 	public void shoot() {
