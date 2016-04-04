@@ -60,6 +60,8 @@ public class Game_Model {
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
 		world[6][1] = new BaseBoard("[6][1].txt", 0, false, null);
 		world[5][1] = new BaseBoard("[5][1].txt", 0, false, null);
+		world[4][1] = new BaseBoard("[4][1].txt", 0, false, null);
+		world[2][1] = new BaseBoard("[2][1].txt", 0, false, null);
 		world[0][1] = new BaseBoard("[0][1].txt", 0, false, null);
 		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
 		world[0][3] = new BaseBoard("[0][4].txt", 0, false, null);
