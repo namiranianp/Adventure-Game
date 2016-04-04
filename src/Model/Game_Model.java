@@ -33,7 +33,7 @@ public class Game_Model {
 	Game_Controller cont;
 	public boolean flashlight = false;
 
-	//player object
+	// player object
 	Player guy;
 
 	public Game_Model(Game_Controller controller) {
@@ -43,6 +43,37 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
+	}
+
+	public void shoot() {
+		if (guy.getDirection() == UP) {
+			for (int i = yPos; i >= 0; i--) {
+				if (gameBoard[xPos][i].hasCreature()) {
+					gameBoard[xPos][i].getCreature().changeHealth(guy.getEquip().getDamage());
+				}
+			}
+		}
+		if (guy.getDirection() == RIGHT) {
+			for (int i = xPos; i < BOARDSIZE; i++) {
+				if (gameBoard[i][yPos].hasCreature()) {
+					gameBoard[i][yPos].getCreature().changeHealth(guy.getEquip().getDamage());
+				}
+			}
+		}
+		if (guy.getDirection() == LEFT) {
+			for (int i = xPos; i < BOARDSIZE; i++) {
+				if (gameBoard[i][yPos].hasCreature()) {
+					gameBoard[i][yPos].getCreature().changeHealth(guy.getEquip().getDamage());
+				}
+			}
+		}
+		if (guy.getDirection() == DOWN) {
+			for (int i = yPos; i < BOARDSIZE; i++) {
+				if (gameBoard[xPos][i].hasCreature()) {
+					gameBoard[xPos][i].getCreature().changeHealth(guy.getEquip().getDamage());
+				}
+			}
+		}
 	}
 
 	public void setDirection(int direction) {

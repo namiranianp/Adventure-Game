@@ -11,6 +11,7 @@ public class BackgroundTile {
 	boolean walkable = true;
 	boolean player = false;
 	boolean dark = false;
+	HostileCreature bad = null;
 
 	// creates the image with whether or not it's walkable
 	public BackgroundTile(BufferedImage pic, boolean walk) {
@@ -29,6 +30,24 @@ public class BackgroundTile {
 		}
 	}
 
+	//
+	public void setCreature(HostileCreature b) {
+		bad = b;
+	}
+
+	public boolean hasCreature() {
+		return bad != null;
+	}
+
+	public void clearCreature() {
+		bad = null;
+	}
+
+	public HostileCreature getCreature() {
+		return bad;
+	}
+	//
+
 	// return whether or not it is walkable
 	public boolean canWalk() {
 		return walkable;
@@ -40,19 +59,20 @@ public class BackgroundTile {
 			return soldier;
 		} else if (dark) {
 			return darkness;
-		} else if(topImage !=null){
+		} else if (topImage != null) {
 			return topImage;
 		}
 		return image;
 	}
 
-	public void setTopImage(BufferedImage pic){
+	public void setTopImage(BufferedImage pic) {
 		topImage = pic;
 	}
-	public void clearTopImage(){
+
+	public void clearTopImage() {
 		topImage = null;
 	}
-	
+
 	// boolean to say whether or not there is a player on this tile
 	public void setPlayer(boolean isThere) {
 		player = isThere;
