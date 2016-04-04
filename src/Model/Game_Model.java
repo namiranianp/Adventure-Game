@@ -37,12 +37,17 @@ public class Game_Model {
 	Player guy;
 
 	public Game_Model(Game_Controller controller) {
-		world[9][1] = new BaseBoard("board.txt", 0, false);
-		world[9][0] = new BaseBoard("testing.txt", 0, false);
+		makeAllBoards();
 		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
+	}
+
+	private void makeAllBoards() {
+		world[9][1] = new BaseBoard("board.txt", 0, false, null);
+		world[9][0] = new BaseBoard("topRight.txt", 0, false, null);
+		world[8][0] = new BaseBoard("[8][0].txt", 0, false, null);
 	}
 
 	public void shoot() {
