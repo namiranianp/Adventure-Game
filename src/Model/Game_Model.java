@@ -89,7 +89,7 @@ public class Game_Model {
 	public void shoot() {
 		if (guy.getDirection() == UP) {
 			for (int i = yPos; i >= 0; i--) {
-				if(gamboard[xPos][i])
+				if(gameBoard[xPos][i].hasTerrain())
 				if (gameBoard[xPos][i].hasCreature()) {
 					gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
 				}
