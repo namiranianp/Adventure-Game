@@ -20,4 +20,12 @@ public class BaseBoard {
 	public String getFileName(){
 		return file;
 	}
+	
+	public void darken(){
+		dark = true;
+	}
+	
+	public void lighten(){
+		dark = false;	
+	}
 }

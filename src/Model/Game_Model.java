@@ -69,6 +69,7 @@ public class Game_Model {
 		world[0][1] = new BaseBoard("[0][1].txt", 0, false, null);
 		//
 		world[9][2] = new BaseBoard("[9][2].txt", 0, false, null);
+		world[8][2] = new BaseBoard("[8][2].txt", 0, false, null);
 		world[2][2] = new BaseBoard("[2][2].txt", 0, false, null);
 		world[1][2] = new BaseBoard("[1][2].txt", 0, false, null);
 		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
@@ -88,6 +89,7 @@ public class Game_Model {
 	public void shoot() {
 		if (guy.getDirection() == UP) {
 			for (int i = yPos; i >= 0; i--) {
+				if(gamboard[xPos][i])
 				if (gameBoard[xPos][i].hasCreature()) {
 					gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
 				}

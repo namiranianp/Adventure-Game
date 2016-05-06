@@ -62,6 +62,13 @@ public class BackgroundTile {
 		return bad != null;
 	}
 
+	public boolean hasTerrain(){
+		if(walkable){
+			return true;
+		}
+		return false;
+	}
+	
 	public void clearCreature() {
 		clearTopImage();
 		bad = null;
