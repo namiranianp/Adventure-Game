@@ -39,7 +39,7 @@ public class BackgroundTile {
 		try {
 			if (soldier == null) {
 				// image of our player
-				soldier = ImageIO.read(new File("images/player.png"));
+				soldier = ImageIO.read(new File("images/temp_soldier.png"));
 				// black
 				darkness = ImageIO.read(new File("images/black.png"));
 				// health pot

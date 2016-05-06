@@ -1,12 +1,13 @@
 package Model;
 
-import Controller.Game_Controller;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+
+import Controller.Game_Controller;
 
 public class Game_Model {
 	// player's positions on the game board
@@ -55,26 +56,33 @@ public class Game_Model {
 		world[2][0] = new BaseBoard("[2][0].txt", 0, false, null);
 		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
 		world[0][0] = new BaseBoard("[0][0].txt", 0, false, null);
+		//
 		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
 		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
 		world[6][1] = new BaseBoard("[6][1].txt", 0, false, null);
 		world[5][1] = new BaseBoard("[5][1].txt", 0, false, null);
 		world[4][1] = new BaseBoard("[4][1].txt", 0, false, null);
+		world[3][1] = new BaseBoard("[3][1].txt", 0, false, null);
 		world[2][1] = new BaseBoard("[2][1].txt", 0, false, null);
+		world[1][1] = new BaseBoard("[1][1].txt", 0, false, null);
 		world[0][1] = new BaseBoard("[0][1].txt", 0, false, null);
-		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
-		world[0][3] = new BaseBoard("[0][4].txt", 0, false, null);
-		world[1][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[2][3] = new BaseBoard("bottom.txt", 0, false, null);
-		//TODO world[3][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[4][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[5][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[6][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[7][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[8][3] = new BaseBoard("bottom.txt", 0, false, null);
-		world[9][3] = new BaseBoard("corner.txt", 0, false, null);
+		//
 		world[9][2] = new BaseBoard("[9][2].txt", 0, false, null);
+		world[2][2] = new BaseBoard("[2][2].txt", 0, false, null);
+		world[1][2] = new BaseBoard("[1][2].txt", 0, false, null);
+		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
+		//
+		world[9][3] = new BaseBoard("corner.txt", 0, false, null);
+		world[8][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[7][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[6][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[5][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[4][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[3][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[2][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[1][3] = new BaseBoard("bottom.txt", 0, false, null);
+		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);	
 	}
 
 	public void shoot() {
