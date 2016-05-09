@@ -1,13 +1,12 @@
 package Model;
 
+import Controller.Game_Controller;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
-import javax.imageio.ImageIO;
-
-import Controller.Game_Controller;
 
 public class Game_Model {
 	// player's positions on the game board
@@ -36,6 +35,7 @@ public class Game_Model {
 
 	// player object
 	public Player guy;
+	public HostileCreature test;
 
 	public Game_Model(Game_Controller controller) {
 		makeAllBoards();
@@ -43,6 +43,7 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
+
 	}
 
 	private void makeAllBoards() {

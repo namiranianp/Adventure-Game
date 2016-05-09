@@ -17,7 +17,24 @@ public class HostileCreature extends Creature {
 		model = m;
 	}
 
-	//
+	//Checks and moves to a certain point.
+
+	public void moveToUser(){
+
+		int playerPosX = model.getPosX();
+		int playerPosY = model.getPosY();
+
+		if(inBounds(xPos,yPos)){
+
+			xPos = playerPosX - 1;
+			yPos = playerPosY - 1;
+
+		}
+
+
+
+	}
+
 	public void move() {
 		int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
 		int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
