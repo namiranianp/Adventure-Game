@@ -18,7 +18,6 @@ public class Game_View {
 
 	public Game_View(Game_Controller c) {
 		control = c;
-
 		window = new JFrame();
 		window.setBounds(100, 20, 655, 700);
 
