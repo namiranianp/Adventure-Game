@@ -57,20 +57,21 @@ public class CustomKeyAdapter extends KeyAdapter {
 
 		}
 
-		//Enemy Drops
-		if(model.gameBoard[model.getXPos()][model.getYPos()].isHealth()){
-
-			model.guy.changeHealth(model.guy.getHealth() + 2);
-			model.gameBoard[model.getXPos()][model.getYPos()].setHealth(false);
-			view.window.repaint();
-
-		}else if(model.gameBoard[model.getXPos()][model.getYPos()].isPower()){
-
-			model.guy.upDamage();
-			model.gameBoard[model.getXPos()][model.getYPos()].setPower(false);
-			view.window.repaint();
-
-		}
+//TODO
+// Enemy Drops
+//		if(model.gameBoard[model.getXPos()][model.getYPos()].isHealth()){
+//
+//			model.guy.changeHealth(model.guy.getHealth() + 2);
+//			model.gameBoard[model.getXPos()][model.getYPos()].setHealth(false);
+//			view.window.repaint();
+//
+//		}else if(model.gameBoard[model.getXPos()][model.getYPos()].isPower()){
+//
+//			model.guy.upDamage();
+//			model.gameBoard[model.getXPos()][model.getYPos()].setPower(false);
+//			view.window.repaint();
+//
+//		}
 
 	}
 

@@ -11,24 +11,29 @@ public class HostileCreature extends Creature {
 
 	Game_Model model;
 
-	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
+	public HostileCreature(String imageName, int hp, int atk, Game_Model m, int xpos, int ypos) {
 		super(imageName);
 		health = hp;
 		attack = atk;
 		model = m;
+
+		yPos = ypos;
+		xPos = xpos;
+
 	}
 
 	// Checks and moves to a certain point.
 	public void move() {
 		//all possible horizontal and vertical options
-		int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
-		int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
+		int[] horizontal = { 1, -1, 1, 1, -1, -1, 0, 0 };
+		int[] vertical =   { 0, 0, 1, -1, 1, -1, 1, -1 };
 		ArrayList<Integer> possible = new ArrayList<Integer>();
 
 		//check to see if each is in bounds and if the terrain is walkable
 		for (int i = 0; i < horizontal.length; i++) {
-			if (inBounds(xPos + horizontal[i], yPos + vertical[i])
-					&& !model.gameBoard[xPos + horizontal[i]][yPos + vertical[i]].hasTerrain()) {
+			int x = xPos + horizontal[i];
+			int y = yPos + vertical[i];
+			if (inBounds(x,y) && model.gameBoard[x][y].hasTerrain()) {
 				possible.add(i);
 			}
 		}

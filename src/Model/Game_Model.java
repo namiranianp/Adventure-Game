@@ -4,12 +4,9 @@ import Controller.Game_Controller;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game_Model {
@@ -48,13 +45,14 @@ public class Game_Model {
 		cont = controller;
 		guy = new Player(cont);
 
-		test = new HostileCreature("enemy.png", 10, 1, this);
-		gameBoard[xPos - 2][yPos - 2].setCreature(test);
+		test = new HostileCreature("enemy.png", 10, 1, this,xPos - 2,yPos);
+		gameBoard[xPos - 2][yPos].setCreature(test);
 		test.setXPos(xPos - 2);
-		test.setYPos(yPos - 2);
-		Timer t = new Timer(100, d -> {
+		test.setYPos(yPos);
+		Timer t = new Timer(1000, d -> {
+            System.out.println(test.getxPos() + " , " + test.getyPos());
 			moveCreature();
-			damagePlayer();
+			//damagePlayer();
 		});
 		t.start();
 	}
