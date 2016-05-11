@@ -46,6 +46,7 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
+<<<<<<< HEAD
 		test = new HostileCreature("enemy.png", 10, 1, this);
 		gameBoard[xPos - 2][yPos].setCreature(test);
 		Timer t = new Timer(1000, new ActionListener() {
@@ -56,6 +57,17 @@ public class Game_Model {
 			}
 		});
 		t.start();
+=======
+		test = new HostileCreature("enemy.png",10,1,this);
+        gameBoard[xPos-2][yPos].setCreature(test);
+        Timer t = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                test.moveToUser();
+            }
+        });
+        t.start();
+>>>>>>> 66d021dc78aabd92c043826d177db014dcb7c808
 	}
 
 	private void makeAllBoards() {

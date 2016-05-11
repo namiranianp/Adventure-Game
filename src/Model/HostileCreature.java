@@ -21,6 +21,7 @@ public class HostileCreature extends Creature {
 
 	// Checks and moves to a certain point.
 
+<<<<<<< HEAD
 	public void moveToUser() {
 
 		int playerPosX = model.getPosX();
@@ -32,6 +33,21 @@ public class HostileCreature extends Creature {
 			xPos = playerPosX;
 			yPos = playerPosY;
 			model.gameBoard[xPos][yPos].setCreature(this);
+=======
+	//region Richards Code
+	public void moveToUser(){
+
+		int playerPosX = model.getPosX();
+		int playerPosY = model.getPosY();
+		
+		//How far before hostile creature follows the player
+		int range = 3;
+		//Radius of hostile creature
+		if(inBounds(xPos,yPos) && Math.pow(playerPosX - xpos, 2) + Math.pow(playerPosY - ypos, 2) < Math.pow(range,2)){
+			//Move toward player (this probabily doesnt work, im still changing it)
+			xPos = xPos + (playerPosX - (Math.abs(posX) + 1));
+			yPos = xPos + (playerPosX - (Math.abs(posX) + 1));
+>>>>>>> 66d021dc78aabd92c043826d177db014dcb7c808
 		}
 	}
 
@@ -54,6 +70,7 @@ public class HostileCreature extends Creature {
 		yPos += vertical[move];
 
 	}
+//endregion
 
 	private boolean inBounds(int x, int y) {
 		return (x >= 0 && x < 10) && (y >= 0 && y < 10);
