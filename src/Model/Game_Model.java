@@ -52,7 +52,7 @@ public class Game_Model {
 		gameBoard[xPos - 2][yPos - 2].setCreature(test);
 		test.setXPos(xPos - 2);
 		test.setYPos(yPos - 2);
-		Timer t = new Timer(100, d -> {
+		Timer t = new Timer(100, e -> {
 			moveCreature();
 			damagePlayer();
 		});
