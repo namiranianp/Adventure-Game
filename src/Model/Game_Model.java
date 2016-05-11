@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.Scanner;
 
 public class Game_Model {
@@ -21,6 +22,9 @@ public class Game_Model {
 	// use these values to edit the surrounding values
 	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
 	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
+	//TODO arrays
+	//final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0, 2, -2, 0, 0 };
+	// final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1, 0, 0, -2, 2 };
 
 	// final variables for the directions
 	final public int UP = 1;
@@ -34,6 +38,8 @@ public class Game_Model {
 	Game_Controller cont;
 	public boolean flashlight = false;
 
+	Timer t = null;
+
 	// player object
 	public Player guy;
 	public HostileCreature test;
@@ -44,32 +50,32 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
-		
-		
-		//LOOK HERE FOR GAME DEMO
+
+		// TODO DEMO
 		//darkenAll();
-		creatureStuff();
+		 //creatureStuff();
 	}
-	
-	private void darkenAll(){
-		for(int i=0; i<world.length; i++){
-			for(int j=0; j<world[0].length; j++){
+
+	private void darkenAll() {
+		for (int i = 0; i < world.length; i++) {
+			for (int j = 0; j < world[0].length; j++) {
 				world[i][j].darken();
 			}
 		}
-		
+
 	}
-	
-	private void creatureStuff(){
-		test = new HostileCreature("enemy.png", 10, 1, this, xPos - 2, yPos);
+
+	private void creatureStuff() {
+		test = new HostileCreature("enemy.png", 1, 1, this, xPos - 2, yPos);
 		gameBoard[xPos - 2][yPos].setCreature(test);
-		Timer t = new Timer(1000, d -> {
+		t = new Timer(1000, d -> {
+			System.out.println(test.getxPos() + " , " + test.getyPos());
 			moveCreature();
 			damagePlayer();
 		});
 		t.start();
 	}
-	
+
 	private void moveCreature() {
 		// updates creature's position
 		test.move();
@@ -77,7 +83,7 @@ public class Game_Model {
 		int y = test.getyPos();
 		// draws creature
 		gameBoard[x][y].setCreature(test);
-        cont.refreshScreen();
+		cont.refreshScreen();
 	}
 
 	public void damagePlayer() {
@@ -93,6 +99,8 @@ public class Game_Model {
 				guy.changeHealth(-1);
 				if (guy.getHealth() == 0) {
 					System.out.println("GAME OVER");
+					cont.gameOver();
+					t.stop();
 				}
 			}
 		}
@@ -109,7 +117,7 @@ public class Game_Model {
 		world[2][0] = new BaseBoard("[2][0].txt", 0, false, null);
 		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
 		world[0][0] = new BaseBoard("[0][0].txt", 0, false, null);
-		//
+		//TODO STARTING
 		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
 		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
