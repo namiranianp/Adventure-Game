@@ -52,7 +52,6 @@ public class Game_Model {
             @Override
             public void actionPerformed(ActionEvent e) {
                 test.moveToUser();
-                System.out.println(test.xP);)
             }
         });
         t.start();
