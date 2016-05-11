@@ -31,4 +31,7 @@ public class Game_Controller {
 
 	public void refreshScreen(){view.window.repaint();}
 
+	public void gameOver(){
+		view.window.dispose();
+	}
 }
