@@ -33,7 +33,7 @@ public class HostileCreature extends Creature {
 		for (int i = 0; i < horizontal.length; i++) {
 			int x = xPos + horizontal[i];
 			int y = yPos + vertical[i];
-			if (inBounds(x,y) && model.gameBoard[x][y].hasTerrain()) {
+			if (inBounds(x,y)) {
 				possible.add(i);
 			}
 		}
@@ -49,7 +49,10 @@ public class HostileCreature extends Creature {
 	}
 
 	private boolean inBounds(int x, int y) {
-		return ((x >= 0 && x < 10) && (y >= 0 && y < 10)) && model.gameBoard[y][x].canWalk();
+		if(!model.gameBoard[y][x].walkable){
+			return false;
+		}
+		return (x >= 0 && x < 10) && (y >= 0 && y < 10);
 
 	}
 

@@ -8,9 +8,7 @@ import java.io.IOException;
 public class BackgroundTile {
 	BufferedImage image, topImage;
 	static BufferedImage soldier, darkness, enemy1;
-	boolean walkable;
-	boolean player;
-	boolean dark;
+	boolean walkable, player, dark;
 	HostileCreature bad = null;
 
 	// creates the image with whether or not it's walkable

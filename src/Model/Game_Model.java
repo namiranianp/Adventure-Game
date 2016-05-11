@@ -45,7 +45,19 @@ public class Game_Model {
 		cont = controller;
 		guy = new Player(cont);
 		
-		creatureStuff();
+		
+		//LOOK HERE FOR GAME DEMO
+		darkenAll();
+		//creatureStuff();
+	}
+	
+	private void darkenAll(){
+		for(int i=0; i<world.length; i++){
+			for(int j=0; j<world[0].length; j++){
+				world[i][j].darken();
+			}
+		}
+		
 	}
 	
 	private void creatureStuff(){
@@ -54,7 +66,7 @@ public class Game_Model {
 		Timer t = new Timer(1000, d -> {
 			System.out.println(test.getxPos() + " , " + test.getyPos());
 			moveCreature();
-			// damagePlayer();
+			damagePlayer();
 		});
 		t.start();
 	}
@@ -78,8 +90,7 @@ public class Game_Model {
 		// if there is a player
 		for (int i = 0; i < horizontal.length; i++) {
 			if ((inBounds(xPos + horizontal[i], yPos + vertical[i])
-					&& !gameBoard[xPos + horizontal[i]][yPos + vertical[i]].hasTerrain())
-					&& gameBoard[xPos + horizontal[i]][yPos + vertical[i]].player) {
+					&& gameBoard[xPos + horizontal[i]][yPos + vertical[i]].player)) {
 				guy.changeHealth(-1);
 				if (guy.getHealth() == 0) {
 					System.out.println("GAME OVER");
@@ -113,6 +124,11 @@ public class Game_Model {
 		//
 		world[9][2] = new BaseBoard("[9][2].txt", 0, false, null);
 		world[8][2] = new BaseBoard("[8][2].txt", 0, false, null);
+		world[7][2] = new BaseBoard("[7][2].txt", 0, false, null);
+		world[6][2] = new BaseBoard("[6][2].txt", 0, false, null);
+		world[5][2] = new BaseBoard("[5][2].txt", 0, false, null);
+		world[4][2] = new BaseBoard("[4][2].txt", 0, false, null);
+		world[3][2] = new BaseBoard("[3][2].txt", 0, false, null);
 		world[2][2] = new BaseBoard("[2][2].txt", 0, false, null);
 		world[1][2] = new BaseBoard("[1][2].txt", 0, false, null);
 		world[0][2] = new BaseBoard("[0][2].txt", 0, false, null);
@@ -121,6 +137,11 @@ public class Game_Model {
 		world[8][3] = new BaseBoard("[8][3].txt", 0, false, null);
 		world[7][3] = new BaseBoard("[7][3].txt", 0, false, null);
 		world[6][3] = new BaseBoard("[6][3].txt", 0, false, null);
+		world[5][3] = new BaseBoard("[5][3].txt", 0, false, null);
+		world[4][3] = new BaseBoard("[4][3].txt", 0, false, null);
+		world[3][3] = new BaseBoard("[3][3].txt", 0, false, null);
+		world[2][3] = new BaseBoard("[2][3].txt", 0, false, null);
+		world[1][3] = new BaseBoard("[1][3].txt", 0, false, null);
 		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);
 	}
 
