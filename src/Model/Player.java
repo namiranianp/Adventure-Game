@@ -24,7 +24,8 @@ public class Player {
 	public void changeHealth(int change) {
 		health += change;
 		if (health <= 0) {
-			// TODO
+			// Game Over
+			health = 0;
 		}
 	}
 
