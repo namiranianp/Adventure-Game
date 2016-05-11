@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class BackgroundTile {
 	BufferedImage image, topImage;
-	static BufferedImage soldier, darkness, powerUp, pot;
+	static BufferedImage soldier, darkness, powerUp, pot, enemy1;
 	boolean walkable;
 	boolean player;
 	boolean dark;
@@ -40,6 +40,8 @@ public class BackgroundTile {
 			if (soldier == null) {
 				// image of our player
 				soldier = ImageIO.read(new File("images/temp_soldier.png"));
+				//image of enemy 1
+				enemy1 = ImageIO.read(new File("images/temp_soldier.png"));
 				// black
 				darkness = ImageIO.read(new File("images/black.png"));
 				// health pot

@@ -7,9 +7,10 @@ public class HostileCreature extends Creature {
 	private int health;
 	private int attack;
 	private int xPos;
-	private int yPos;
-	Game_Model model;
 
+	private int yPos;
+
+	Game_Model model;
 	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
 		super(imageName);
 		health = hp;
@@ -24,14 +25,14 @@ public class HostileCreature extends Creature {
 		int playerPosX = model.getPosX();
 		int playerPosY = model.getPosY();
 
-		if(inBounds(xPos,yPos)){
+		if(inBounds(playerPosX,playerPosY)){
 
-			xPos = playerPosX - 1;
-			yPos = playerPosY - 1;
+			model.gameBoard[xPos][yPos].clearCreature();
+			xPos = playerPosX;
+			yPos = playerPosY;
+			model.gameBoard[xPos][yPos].setCreature(this);
 
 		}
-
-
 
 	}
 
@@ -52,31 +53,36 @@ public class HostileCreature extends Creature {
 		model.gameBoard[xPos][yPos].clearCreature();
 		xPos += horizontal[move];
 		yPos += vertical[move];
-		model.gameBoard[xPos][yPos].setCreature(this);
+
 	}
 
 	private boolean inBounds(int x, int y) {
 		return (x >= 0 && x < 10) && (y >= 0 && y < 10);
 
 	}
-	//
 
-	//
 	public void changeHealth(int hp) {
 		health -= hp;
 		if (health <= 0) {
 			model.gameBoard[xPos][yPos].clearCreature();
-			
+
 		}
 	}
 
 	public int getHealth() {
 		return health;
 	}
-	//
 
 	public int getAttack() {
 		return attack;
+	}
+
+	public int getxPos() {
+		return xPos;
+	}
+
+	public int getyPos() {
+		return yPos;
 	}
 
 

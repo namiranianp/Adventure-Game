@@ -3,6 +3,9 @@ package Model;
 import Controller.Game_Controller;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +46,16 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
-
+		test = new HostileCreature("enemy.png",10,1,this);
+        gameBoard[xPos-2][yPos].setCreature(test);
+        Timer t = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                test.moveToUser();
+                System.out.println(test.xP);)
+            }
+        });
+        t.start();
 	}
 
 	private void makeAllBoards() {
