@@ -11,11 +11,11 @@ import java.sql.Time;
 import java.util.Scanner;
 
 public class Game_Model {
-	// player's positions on the game board
+	//TODO player's positions on the game board
 	private int xPos = 7;
 	private int yPos = 4;
 
-	// player's positions in the world array
+	//TODO player's positions in the world array
 	private int globalX = 9;
 	private int globalY = 1;
 
@@ -42,8 +42,8 @@ public class Game_Model {
 
 	// player object
 	public Player guy;
-	public HostileCreature test;
-
+	//public BasicThug thug = new BasicThug("enemy.png", 2, 1);
+	
 	public Game_Model(Game_Controller controller) {
 		makeAllBoards();
 		fillBoard();
@@ -65,26 +65,25 @@ public class Game_Model {
 
 	}
 
-	private void creatureStuff() {
-		test = new HostileCreature("enemy.png", 1, 1, this, xPos - 2, yPos);
-		gameBoard[xPos - 2][yPos].setCreature(test);
-		t = new Timer(1000, d -> {
-			System.out.println(test.getxPos() + " , " + test.getyPos());
-			moveCreature();
-			damagePlayer();
-		});
-		t.start();
-	}
-
-	private void moveCreature() {
-		// updates creature's position
-		test.move();
-		int x = test.getxPos();
-		int y = test.getyPos();
-		// draws creature
-		gameBoard[x][y].setCreature(test);
-		cont.refreshScreen();
-	}
+//	private void creatureStuff() {
+//		gameBoard[xPos - 2][yPos].setCreature(test);
+//		t = new Timer(1000, d -> {
+//			System.out.println(test.getxPos() + " , " + test.getyPos());
+//			moveCreature();
+//			damagePlayer();
+//		});
+//		t.start();
+//	}
+//
+//	private void moveCreature() {
+//		// updates creature's position
+//		test.move();
+//		int x = test.getxPos();
+//		int y = test.getyPos();
+//		// draws creature
+//		gameBoard[x][y].setCreature(test);
+//		cont.refreshScreen();
+//	}
 
 	public void damagePlayer() {
 		// all possible horizontal and vertical options

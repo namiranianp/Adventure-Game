@@ -8,52 +8,13 @@ public class HostileCreature extends Creature {
 	private int attack;
 	private int xPos;
 	private int yPos;
-
 	Game_Model model;
-
-	public HostileCreature(String imageName, int hp, int atk, Game_Model m, int xpos, int ypos) {
+	
+	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
 		super(imageName);
 		health = hp;
 		attack = atk;
 		model = m;
-
-		yPos = ypos;
-		xPos = xpos;
-
-	}
-
-	// Checks and moves to a certain point.
-	public void move() {
-		//all possible horizontal and vertical options
-		int[] horizontal = { 1, -1, 1, 1, -1, -1, 0, 0 };
-		int[] vertical =   { 0, 0, 1, -1, 1, -1, 1, -1 };
-		ArrayList<Integer> possible = new ArrayList<Integer>();
-
-		//check to see if each is in bounds and if the terrain is walkable
-		for (int i = 0; i < horizontal.length; i++) {
-			int x = xPos + horizontal[i];
-			int y = yPos + vertical[i];
-			if (inBounds(x,y)) {
-				possible.add(i);
-			}
-		}
-
-		//randomly pick where to move
-		Random rand = new Random();
-		int move = rand.nextInt(possible.size());
-		model.gameBoard[xPos][yPos].clearCreature();
-		xPos += horizontal[move];
-		yPos += vertical[move];
-		possible.clear();
-
-	}
-
-	private boolean inBounds(int x, int y) {
-		if(!model.gameBoard[y][x].walkable){
-			return false;
-		}
-		return (x >= 0 && x < 10) && (y >= 0 && y < 10);
-
 	}
 
 	public void changeHealth(int hp) {
