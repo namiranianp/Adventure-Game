@@ -44,6 +44,7 @@ public class HostileCreature extends Creature {
 		model.gameBoard[xPos][yPos].clearCreature();
 		xPos += horizontal[move];
 		yPos += vertical[move];
+		possible.clear();
 
 	}
 

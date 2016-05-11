@@ -29,4 +29,6 @@ public class Game_Controller {
 		return model.getBoardSize();
 	}
 
+	public void refreshScreen(){view.window.repaint();}
+
 }
