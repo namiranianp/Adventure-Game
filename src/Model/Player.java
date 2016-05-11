@@ -4,7 +4,7 @@ import Controller.Game_Controller;
 
 public class Player {
 	private int direction = 4; // up = 1 right = 2 down = 3 left = 4
-	private int health = 50;
+	private int health = 2;
 	Game_Controller control;
 	int attack = 1;
 
