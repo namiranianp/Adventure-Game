@@ -7,10 +7,10 @@ public class HostileCreature extends Creature {
 	private int health;
 	private int attack;
 	private int xPos;
-
 	private int yPos;
 
 	Game_Model model;
+
 	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
 		super(imageName);
 		health = hp;
@@ -18,36 +18,22 @@ public class HostileCreature extends Creature {
 		model = m;
 	}
 
-	//Checks and moves to a certain point.
-
-	//region Richards Code
-	public void moveToUser(){
-
-		int playerPosX = model.getPosX();
-		int playerPosY = model.getPosY();
-		
-		//How far before hostile creature follows the player
-		int range = 3;
-		//Radius of hostile creature
-		if(inBounds(xPos,yPos) && Math.pow(playerPosX - xpos, 2) + Math.pow(playerPosY - ypos, 2) < Math.pow(range,2)){
-			//Move toward player (this probabily doesnt work, im still changing it)
-			xPos = xPos + (playerPosX - (Math.abs(posX) + 1));
-			yPos = xPos + (playerPosX - (Math.abs(posX) + 1));
-		}
-	}
-
+	// Checks and moves to a certain point.
 	public void move() {
+		//all possible horizontal and vertical options
 		int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
 		int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
 		ArrayList<Integer> possible = new ArrayList<Integer>();
 
+		//check to see if each is in bounds and if the terrain is walkable
 		for (int i = 0; i < horizontal.length; i++) {
 			if (inBounds(xPos + horizontal[i], yPos + vertical[i])
-					&& model.gameBoard[xPos + horizontal[i]][yPos + vertical[i]].canWalk()) {
+					&& !model.gameBoard[xPos + horizontal[i]][yPos + vertical[i]].hasTerrain()) {
 				possible.add(i);
 			}
 		}
 
+		//randomly pick where to move
 		Random rand = new Random();
 		int move = rand.nextInt(possible.size());
 		model.gameBoard[xPos][yPos].clearCreature();
@@ -55,7 +41,6 @@ public class HostileCreature extends Creature {
 		yPos += vertical[move];
 
 	}
-//endregion
 
 	private boolean inBounds(int x, int y) {
 		return (x >= 0 && x < 10) && (y >= 0 && y < 10);
@@ -63,10 +48,9 @@ public class HostileCreature extends Creature {
 	}
 
 	public void changeHealth(int hp) {
-		health -= hp;
+		health--;
 		if (health <= 0) {
 			model.gameBoard[xPos][yPos].clearCreature();
-
 		}
 	}
 
@@ -86,5 +70,11 @@ public class HostileCreature extends Creature {
 		return yPos;
 	}
 
-
+	public void setXPos(int x){
+		xPos = x;
+	}
+	
+	public void setYPos(int y){
+		yPos = y;
+	}
 }

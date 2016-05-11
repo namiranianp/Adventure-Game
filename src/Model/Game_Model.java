@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game_Model {
@@ -46,15 +47,44 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
-		test = new HostileCreature("enemy.png",10,1,this);
-        gameBoard[xPos-2][yPos].setCreature(test);
-        Timer t = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                test.moveToUser();
-            }
-        });
-        t.start();
+
+		test = new HostileCreature("enemy.png", 10, 1, this);
+		gameBoard[xPos - 2][yPos - 2].setCreature(test);
+		test.setXPos(xPos - 2);
+		test.setYPos(yPos - 2);
+		Timer t = new Timer(100, d -> {
+			moveCreature();
+			damagePlayer();
+		});
+		t.start();
+	}
+
+	private void moveCreature() {
+		// updates creature's position
+		test.move();
+		int x = test.getxPos();
+		int y = test.getyPos();
+		// draws creature
+		gameBoard[x][y].setCreature(test);
+	}
+
+	public void damagePlayer() {
+		// all possible horizontal and vertical options
+		int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
+		int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
+
+		// check to see if each is in bounds and if the terrain is walkable and
+		// if there is a player
+		for (int i = 0; i < horizontal.length; i++) {
+			if ((inBounds(xPos + horizontal[i], yPos + vertical[i])
+					&& !gameBoard[xPos + horizontal[i]][yPos + vertical[i]].hasTerrain())
+					&& gameBoard[xPos + horizontal[i]][yPos + vertical[i]].player) {
+				guy.changeHealth(-1);
+				if(guy.getHealth() == 0){
+					System.out.println("GAME OVER");
+				}
+			}
+		}
 	}
 
 	private void makeAllBoards() {
@@ -90,16 +120,16 @@ public class Game_Model {
 		world[8][3] = new BaseBoard("[8][3].txt", 0, false, null);
 		world[7][3] = new BaseBoard("[7][3].txt", 0, false, null);
 		world[6][3] = new BaseBoard("[6][3].txt", 0, false, null);
-		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);	
+		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);
 	}
 
 	public void shoot() {
 		if (guy.getDirection() == UP) {
 			for (int i = yPos; i >= 0; i--) {
-				if(gameBoard[xPos][i].hasTerrain())
-				if (gameBoard[xPos][i].hasCreature()) {
-					gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
-				}
+				if (gameBoard[xPos][i].hasTerrain())
+					if (gameBoard[xPos][i].hasCreature()) {
+						gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
+					}
 			}
 		}
 		if (guy.getDirection() == RIGHT) {
