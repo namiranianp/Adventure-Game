@@ -46,16 +46,16 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
-		test = new HostileCreature("enemy.png",10,1,this);
-        gameBoard[xPos-2][yPos].setCreature(test);
-        Timer t = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                test.moveToUser();
-                System.out.println(test.xP);)
-            }
-        });
-        t.start();
+		test = new HostileCreature("enemy.png", 10, 1, this);
+		gameBoard[xPos - 2][yPos].setCreature(test);
+		Timer t = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				test.moveToUser();
+				System.out.println(test);
+			}
+		});
+		t.start();
 	}
 
 	private void makeAllBoards() {
@@ -91,16 +91,16 @@ public class Game_Model {
 		world[8][3] = new BaseBoard("[8][3].txt", 0, false, null);
 		world[7][3] = new BaseBoard("[7][3].txt", 0, false, null);
 		world[6][3] = new BaseBoard("[6][3].txt", 0, false, null);
-		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);	
+		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);
 	}
 
 	public void shoot() {
 		if (guy.getDirection() == UP) {
 			for (int i = yPos; i >= 0; i--) {
-				if(gameBoard[xPos][i].hasTerrain())
-				if (gameBoard[xPos][i].hasCreature()) {
-					gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
-				}
+				if (gameBoard[xPos][i].hasTerrain())
+					if (gameBoard[xPos][i].hasCreature()) {
+						gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
+					}
 			}
 		}
 		if (guy.getDirection() == RIGHT) {
