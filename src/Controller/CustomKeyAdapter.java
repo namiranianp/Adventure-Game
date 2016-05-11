@@ -50,11 +50,7 @@ public class CustomKeyAdapter extends KeyAdapter {
 			model.move(x + 1, y);
 			view.window.repaint();
 			model.setDirection(model.RIGHT);
-		}
-
-		// shooting things
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-
+		}/*Shooting things*/ else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			model.shoot();
 		}
 	}

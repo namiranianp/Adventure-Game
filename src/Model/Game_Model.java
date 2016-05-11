@@ -152,7 +152,6 @@ public class Game_Model {
 	}
 
 	public void shoot() {
-		System.out.println("SHOOTING!!!!");
 		if (guy.getDirection() == UP) {
 			for (int i = yPos; i >= 0; i--) {
 				if (gameBoard[xPos][i].hasTerrain())
@@ -187,6 +186,7 @@ public class Game_Model {
 	public void setDirection(int direction) {
 		guy.setDirection(direction);
 	}
+
 
 	// turns everything dark
 	private void darkenBoard() {
