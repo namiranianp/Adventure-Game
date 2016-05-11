@@ -48,7 +48,7 @@ public class HostileCreature extends Creature {
 	}
 
 	private boolean inBounds(int x, int y) {
-		return (x >= 0 && x < 10) && (y >= 0 && y < 10);
+		return ((x >= 0 && x < 10) && (y >= 0 && y < 10)) && model.gameBoard[y][x].canWalk();
 
 	}
 

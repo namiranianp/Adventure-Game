@@ -44,24 +44,21 @@ public class Game_Model {
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
-
-		test = new HostileCreature("enemy.png", 10, 1, this,xPos - 2,yPos);
+		
+		creatureStuff();
+	}
+	
+	private void creatureStuff(){
+		test = new HostileCreature("enemy.png", 10, 1, this, xPos - 2, yPos);
 		gameBoard[xPos - 2][yPos].setCreature(test);
-		test.setXPos(xPos - 2);
-<<<<<<< HEAD
-		test.setYPos(yPos - 2);
-		Timer t = new Timer(100, e -> {
-=======
-		test.setYPos(yPos);
 		Timer t = new Timer(1000, d -> {
-            System.out.println(test.getxPos() + " , " + test.getyPos());
->>>>>>> 36ae985b6e71bbdbeb7a95de5f97d67ea69cb651
+			System.out.println(test.getxPos() + " , " + test.getyPos());
 			moveCreature();
-			//damagePlayer();
+			// damagePlayer();
 		});
 		t.start();
 	}
-
+	
 	private void moveCreature() {
 		// updates creature's position
 		test.move();
@@ -83,7 +80,7 @@ public class Game_Model {
 					&& !gameBoard[xPos + horizontal[i]][yPos + vertical[i]].hasTerrain())
 					&& gameBoard[xPos + horizontal[i]][yPos + vertical[i]].player) {
 				guy.changeHealth(-1);
-				if(guy.getHealth() == 0){
+				if (guy.getHealth() == 0) {
 					System.out.println("GAME OVER");
 				}
 			}
