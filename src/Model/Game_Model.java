@@ -66,6 +66,7 @@ public class Game_Model {
 		int y = test.getyPos();
 		// draws creature
 		gameBoard[x][y].setCreature(test);
+        cont.refreshScreen();
 	}
 
 	public void damagePlayer() {
