@@ -47,8 +47,8 @@ public class Game_Model {
 		
 		
 		//LOOK HERE FOR GAME DEMO
-		darkenAll();
-		//creatureStuff();
+		//darkenAll();
+		creatureStuff();
 	}
 	
 	private void darkenAll(){
@@ -64,7 +64,6 @@ public class Game_Model {
 		test = new HostileCreature("enemy.png", 10, 1, this, xPos - 2, yPos);
 		gameBoard[xPos - 2][yPos].setCreature(test);
 		Timer t = new Timer(1000, d -> {
-			System.out.println(test.getxPos() + " , " + test.getyPos());
 			moveCreature();
 			damagePlayer();
 		});
@@ -146,7 +145,6 @@ public class Game_Model {
 	}
 
 	public void shoot() {
-		System.out.println("SHOOTING!!!!");
 		if (guy.getDirection() == UP) {
 			for (int i = yPos; i >= 0; i--) {
 				if (gameBoard[xPos][i].hasTerrain())
@@ -181,6 +179,7 @@ public class Game_Model {
 	public void setDirection(int direction) {
 		guy.setDirection(direction);
 	}
+
 
 	// turns everything dark
 	private void darkenBoard() {

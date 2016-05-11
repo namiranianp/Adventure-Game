@@ -37,7 +37,6 @@ public class Game_View {
 					JScrollPane helpPane = new JScrollPane(helpContent);
 					JOptionPane.showMessageDialog(null, helpPane, "How To Play", JOptionPane.PLAIN_MESSAGE, null);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -53,7 +52,6 @@ public class Game_View {
 					JScrollPane helpPane = new JScrollPane(helpContent);
 					JOptionPane.showMessageDialog(null, helpPane, "How To Play", JOptionPane.PLAIN_MESSAGE, null);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
