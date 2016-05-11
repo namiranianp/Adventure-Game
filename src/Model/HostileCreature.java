@@ -23,16 +23,15 @@ public class HostileCreature extends Creature {
 
 		int playerPosX = model.getPosX();
 		int playerPosY = model.getPosY();
-
-		if(inBounds(xPos,yPos)){
-
-			xPos = playerPosX - 1;
-			yPos = playerPosY - 1;
-
+		
+		//How far before hostile creature follows the player
+		int range = 3;
+		//Radius of hostile creature
+		if(inBounds(xPos,yPos) && Math.pow(playerPosX - xpos, 2) + Math.pow(playerPosY - ypos, 2) < Math.pow(range,2)){
+			//Move toward player (this probabily doesnt work, im still changing it)
+			xPos = xPos + (playerPosX - (Math.abs(posX) + 1));
+			yPos = xPos + (playerPosX - (Math.abs(posX) + 1));
 		}
-
-
-
 	}
 
 	public void move() {
