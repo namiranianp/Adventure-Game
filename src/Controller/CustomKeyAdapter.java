@@ -54,6 +54,7 @@ public class CustomKeyAdapter extends KeyAdapter {
 
 		// shooting things
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+
 			model.shoot();
 		}
 	}
