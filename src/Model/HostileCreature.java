@@ -10,11 +10,13 @@ public class HostileCreature extends Creature {
 	private int yPos;
 	Game_Model model;
 	
-	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
+	public HostileCreature(String imageName, int hp, int atk, Game_Model m, int x, int y) {
 		super(imageName);
 		health = hp;
 		attack = atk;
 		model = m;
+		xPos = x;
+		yPos = y;
 	}
 
 	public void changeHealth(int hp) {
@@ -32,11 +34,11 @@ public class HostileCreature extends Creature {
 		return attack;
 	}
 
-	public int getxPos() {
+	public int getXPos() {
 		return xPos;
 	}
 
-	public int getyPos() {
+	public int getYPos() {
 		return yPos;
 	}
 

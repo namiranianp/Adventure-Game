@@ -42,7 +42,7 @@ public class Game_Model {
 
 	// player object
 	public Player guy;
-	//public BasicThug thug = new BasicThug("enemy.png", 2, 1);
+	public BasicThug thug = new BasicThug("enemy.png", 2, 1, this, 0, 0);
 	
 	public Game_Model(Game_Controller controller) {
 		makeAllBoards();
@@ -53,9 +53,16 @@ public class Game_Model {
 
 		// TODO DEMO
 		//darkenAll();
-		 //creatureStuff();
+		creatureStuff();
 	}
 
+	public void creatureStuff(){
+		world[9][1].getMonster().setXPos(5);
+		world[9][1].getMonster().setYPos(5);
+		gameBoard[5][5].setCreature(thug);
+		thug.begin();
+	}
+	
 	private void darkenAll() {
 		for (int i = 0; i < world.length; i++) {
 			for (int j = 0; j < world[0].length; j++) {
@@ -64,26 +71,6 @@ public class Game_Model {
 		}
 
 	}
-
-//	private void creatureStuff() {
-//		gameBoard[xPos - 2][yPos].setCreature(test);
-//		t = new Timer(1000, d -> {
-//			System.out.println(test.getxPos() + " , " + test.getyPos());
-//			moveCreature();
-//			damagePlayer();
-//		});
-//		t.start();
-//	}
-//
-//	private void moveCreature() {
-//		// updates creature's position
-//		test.move();
-//		int x = test.getxPos();
-//		int y = test.getyPos();
-//		// draws creature
-//		gameBoard[x][y].setCreature(test);
-//		cont.refreshScreen();
-//	}
 
 	public void damagePlayer() {
 		// all possible horizontal and vertical options
@@ -117,7 +104,7 @@ public class Game_Model {
 		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
 		world[0][0] = new BaseBoard("[0][0].txt", 0, false, null);
 		//TODO STARTING
-		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
+		world[9][1] = new BaseBoard("[9][1].txt", 1, false, thug);
 		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
 		world[6][1] = new BaseBoard("[6][1].txt", 0, false, null);
