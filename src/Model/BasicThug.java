@@ -8,57 +8,72 @@ import javax.swing.Timer;
 public class BasicThug extends HostileCreature {
 
 	private Game_Model model;
+	private Timer t = new Timer(1000, d -> {
+		movement();
+	});;
 
 	public BasicThug(String imageName, int hp, int atk, Game_Model m, int x, int y) {
 		super(imageName, hp, atk, m, x, y);
 		model = m;
-		begin();
-	}
-
-	public void begin() {
-		Timer t = new Timer(1000, d -> {
-			move();
+		super.t = new Timer(500, d -> {
+			movement();
+			damagePlayer();
 		});
-		t.start();
+
 	}
 
 	// unique way this creature moves
-	private void move() {
-		// all possible horizontal and vertical options
-		int[] horizontal = { 1, -1, 1, 1, -1, -1, 0, 0 };
-		int[] vertical = { 0, 0, 1, -1, 1, -1, 1, -1 };
-		ArrayList<Integer> possible = new ArrayList<Integer>();
-		possible.clear();
+	private void movement() {
+		// first value is horizontal, second is vertical
+		int[][] directions = { { -1, -1 }, { 0, -1 }, { 1, -1 }, { 1, 0 }, { 1, 1 }, { 0, 1 }, { -1, 1 }, { -1, 0 } };
+		ArrayList<Integer> possibilities = new ArrayList<Integer>();
+		int x;
+		int y;
+		int currentX = getXPos();
+		int currentY = getYPos();
+		Random rand = new Random();
 
-		// check to see if each is in bounds and if the terrain is walkable
-		for (int i = 0; i < horizontal.length; i++) {
-			int x = getXPos() + horizontal[i];
-			int y = getXPos() + vertical[i];
-			if (inBounds(x, y)) {
-				possible.add(i);
+		for (int i = 0; i < directions.length; i++) {
+			x = currentX + directions[i][0];
+			y = currentY + directions[i][1];
+
+			if (isInBounds(x, y) && model.gameBoard[x][y].canWalk()) {
+				possibilities.add(i);
 			}
 		}
 
-		// randomly pick where to move
-		Random rand = new Random();
-		int move = 0;
-		if (possible.size() > 0) {
-			move = rand.nextInt(possible.size());
-		}
-		model.gameBoard[getXPos()][getYPos()].clearCreature();
-		setXPos(getXPos() + horizontal[move]);
-		setYPos(getYPos() + vertical[move]);
+		int pos = rand.nextInt(possibilities.size());
+		model.gameBoard[currentX][currentY].clearCreature();
+		setXPos(currentX + directions[possibilities.get(pos)][0]);
+		setYPos(currentY + directions[possibilities.get(pos)][1]);
 		model.gameBoard[getXPos()][getYPos()].setCreature(this);
+		model.cont.refreshScreen();
+		//damagePlayer();
+	}
+
+	private void damagePlayer() {
+		// first value is horizontal, second is vertical
+		int[][] directions = { { -1, -1 }, { 0, -1 }, { 1, -1 }, { 1, 0 }, { 1, 1 }, { 0, 1 }, { -1, 1 }, { -1, 0 } };
+		int x;
+		int y;
+		int currentX = getXPos();
+		int currentY = getYPos();
+
+		for (int i = 0; i < directions.length; i++) {
+			x = currentX + directions[i][0];
+			y = currentY + directions[i][1];
+
+			if (isInBounds(x, y) && model.gameBoard[x][y].player) {
+				model.guy.changeHealth(0 - getAttack());
+			}
+		}
 	}
 
 	// helper method
-	private boolean inBounds(int x, int y) {
+	private boolean isInBounds(int x, int y) {
 		// if the position is in bounds continue, otherwise return false
-		if ((x >= 0 && x < 10) && (y >= 0 && y < 10)) {
-			// if there is walkable terrain return true, otherwise return false
-			if (!(model.gameBoard[y][x].hasTerrain())) {
-				return true;
-			}
+		if ((x >= 0 && x < model.BOARDSIZE) && (y >= 0 && y < model.BOARDSIZE)) {
+			return true;
 		}
 		return false;
 

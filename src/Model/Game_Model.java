@@ -1,29 +1,30 @@
 package Model;
 
-import Controller.Game_Controller;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
+import java.util.Random;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+import javax.swing.Timer;
+
+import Controller.Game_Controller;
+
 public class Game_Model {
-	//TODO player's positions on the game board
+	// TODO player's positions on the game board
 	private int xPos = 7;
 	private int yPos = 4;
 
-	//TODO player's positions in the world array
+	// TODO player's positions in the world array
 	private int globalX = 9;
 	private int globalY = 1;
 
 	// use these values to edit the surrounding values
 	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
 	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
-	//TODO arrays
-	//final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0, 2, -2, 0, 0 };
+	// TODO arrays
+	// final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0, 2, -2, 0, 0 };
 	// final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1, 0, 0, -2, 2 };
 
 	// final variables for the directions
@@ -43,26 +44,94 @@ public class Game_Model {
 	// player object
 	public Player guy;
 	public BasicThug thug = new BasicThug("enemy.png", 2, 1, this, 0, 0);
-	
+	public BasicThug thug1 = new BasicThug("enemy.png", 2, 1, this, 0, 0);
+
 	public Game_Model(Game_Controller controller) {
 		makeAllBoards();
 		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
-		guy = new Player(cont);
+		guy = new Player(cont, this);
 
 		// TODO DEMO
-		//darkenAll();
-		creatureStuff();
+		setCreatures();
 	}
 
-	public void creatureStuff(){
-		world[9][1].getMonster().setXPos(5);
-		world[9][1].getMonster().setYPos(5);
-		gameBoard[5][5].setCreature(thug);
-		thug.begin();
+	public void setCreatures() {
+		Random rand = new Random();
+		int x = 0;
+		int y = 0;
+
+		do {
+			x = rand.nextInt(BOARDSIZE);
+			y = rand.nextInt(BOARDSIZE);
+		} while (gameBoard[x][y].hasTerrain() && !(gameBoard[x][y].hasCreature() || gameBoard[x][y].player));
+
+		world[globalX][globalY].getMonster().setXPos(x);
+		world[globalX][globalY].getMonster().setYPos(y);
+		gameBoard[x][y].setCreature(world[globalX][globalY].getMonster());
+		world[globalX][globalY].getMonster().begin();
+
 	}
-	
+
+	public void clearAllCreatures() {
+		for (int i = 0; i < BOARDSIZE; i++) {
+			for (int j = 0; j < BOARDSIZE; j++) {
+				if (gameBoard[i][j].hasCreature()) {
+					gameBoard[i][j].getCreature().stop();
+					gameBoard[i][j].clearCreature();
+				}
+			}
+		}
+	}
+
+	public void shoot() {
+		// UP
+		if (guy.getDirection() == 1) {
+			int i = yPos;
+			while (i >= 0 && !gameBoard[xPos][i].hasTerrain()) {
+				if (gameBoard[xPos][i].hasCreature()) {
+					gameBoard[xPos][i].getCreature().changeHealth(-1);
+					break;
+				}
+				i--;
+			}
+		}
+		// RIGHT
+		if (guy.getDirection() == 2) {
+			int i = xPos;
+			while (i < BOARDSIZE && !gameBoard[i][yPos].hasTerrain()) {
+				if (gameBoard[i][yPos].hasCreature()) {
+					gameBoard[i][yPos].getCreature().changeHealth(-1);
+					break;
+				}
+				i++;
+			}
+		}
+		// DOWN
+		if (guy.getDirection() == 3) {
+			int i = yPos;
+			while (i < BOARDSIZE && !gameBoard[xPos][i].hasTerrain()) {
+				if (gameBoard[xPos][i].hasCreature()) {
+					gameBoard[xPos][i].getCreature().changeHealth(-1);
+					break;
+				}
+				i++;
+			}
+		}
+		// LEFT
+		if (guy.getDirection() == 4) {
+			int i = xPos;
+			while (i >= 0 && !gameBoard[i][yPos].hasTerrain()) {
+				if (gameBoard[i][yPos].hasCreature()) {
+					gameBoard[i][yPos].getCreature().changeHealth(-1);
+					break;
+				}
+				i--;
+			}
+		}
+	}
+
 	private void darkenAll() {
 		for (int i = 0; i < world.length; i++) {
 			for (int j = 0; j < world[0].length; j++) {
@@ -72,27 +141,8 @@ public class Game_Model {
 
 	}
 
-	public void damagePlayer() {
-		// all possible horizontal and vertical options
-		int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
-		int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
-
-		// check to see if each is in bounds and if the terrain is walkable and
-		// if there is a player
-		for (int i = 0; i < horizontal.length; i++) {
-			if ((inBounds(xPos + horizontal[i], yPos + vertical[i])
-					&& gameBoard[xPos + horizontal[i]][yPos + vertical[i]].player)) {
-				guy.changeHealth(-1);
-				if (guy.getHealth() == 0) {
-					System.out.println("GAME OVER");
-					cont.gameOver();
-					t.stop();
-				}
-			}
-		}
-	}
-
 	private void makeAllBoards() {
+		// TODO Maps
 		world[9][0] = new BaseBoard("[9][0].txt", 0, false, null);
 		world[8][0] = new BaseBoard("[8][0].txt", 0, false, null);
 		world[7][0] = new BaseBoard("[7][0].txt", 0, false, null);
@@ -103,7 +153,7 @@ public class Game_Model {
 		world[2][0] = new BaseBoard("[2][0].txt", 0, false, null);
 		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
 		world[0][0] = new BaseBoard("[0][0].txt", 0, false, null);
-		//TODO STARTING
+		//
 		world[9][1] = new BaseBoard("[9][1].txt", 1, false, thug);
 		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
@@ -138,42 +188,9 @@ public class Game_Model {
 		world[0][3] = new BaseBoard("[0][3].txt", 0, false, null);
 	}
 
-	public void shoot() {
-		if (guy.getDirection() == UP) {
-			for (int i = yPos; i >= 0; i--) {
-				if (gameBoard[xPos][i].hasTerrain())
-					if (gameBoard[xPos][i].hasCreature()) {
-						gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
-					}
-			}
-		}
-		if (guy.getDirection() == RIGHT) {
-			for (int i = xPos; i < BOARDSIZE; i++) {
-				if (gameBoard[i][yPos].hasCreature()) {
-					gameBoard[i][yPos].getCreature().changeHealth(guy.getDamage());
-				}
-			}
-		}
-		if (guy.getDirection() == LEFT) {
-			for (int i = xPos; i < BOARDSIZE; i++) {
-				if (gameBoard[i][yPos].hasCreature()) {
-					gameBoard[i][yPos].getCreature().changeHealth(guy.getDamage());
-				}
-			}
-		}
-		if (guy.getDirection() == DOWN) {
-			for (int i = yPos; i < BOARDSIZE; i++) {
-				if (gameBoard[xPos][i].hasCreature()) {
-					gameBoard[xPos][i].getCreature().changeHealth(guy.getDamage());
-				}
-			}
-		}
-	}
-
 	public void setDirection(int direction) {
 		guy.setDirection(direction);
 	}
-
 
 	// turns everything dark
 	private void darkenBoard() {
@@ -267,6 +284,7 @@ public class Game_Model {
 	}
 
 	private void switchBoard(int x, int y) {
+		clearAllCreatures();
 
 		if (y < 0) {
 			globalY--;
@@ -293,7 +311,6 @@ public class Game_Model {
 			fillBoard();
 			gameBoard[xPos][yPos].setPlayer(true);
 		}
-
 	}
 
 	// checks to see whether or not the desired location is within the board

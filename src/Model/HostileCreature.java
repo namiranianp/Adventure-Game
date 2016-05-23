@@ -1,7 +1,11 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 public class HostileCreature extends Creature {
 	private int health;
@@ -9,6 +13,7 @@ public class HostileCreature extends Creature {
 	private int xPos;
 	private int yPos;
 	Game_Model model;
+	Timer t = null;
 	
 	public HostileCreature(String imageName, int hp, int atk, Game_Model m, int x, int y) {
 		super(imageName);
@@ -18,10 +23,19 @@ public class HostileCreature extends Creature {
 		xPos = x;
 		yPos = y;
 	}
-
+	
+	public void begin(){
+		t.start();
+	}
+	
+	public void stop(){
+		t.stop();
+	}
+	
 	public void changeHealth(int hp) {
-		health--;
+		health += hp;
 		if (health <= 0) {
+			model.gameBoard[xPos][yPos].getCreature().stop();
 			model.gameBoard[xPos][yPos].clearCreature();
 		}
 	}
@@ -49,4 +63,10 @@ public class HostileCreature extends Creature {
 	public void setYPos(int y){
 		yPos = y;
 	}
+	
+	public void setPos(int x, int y){
+		xPos = x;
+		yPos = y;
+	}
+	
 }

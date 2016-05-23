@@ -19,8 +19,6 @@ public class BackgroundTile {
 			if (soldier == null) {
 				// image of our player
 				soldier = ImageIO.read(new File("images/temp_soldier.png"));
-				//image of enemy 1
-				enemy1 = ImageIO.read(new File("images/temp_soldier.png"));
 				// black
 				darkness = ImageIO.read(new File("images/black.png"));
 			}
@@ -39,13 +37,13 @@ public class BackgroundTile {
 		return bad != null;
 	}
 
-	public boolean hasTerrain(){
-		if(walkable){
-			return true;
+	public boolean hasTerrain() {
+		if (walkable) {
+			return false;
 		}
-		return false;
+		return true;
 	}
-	
+
 	public void clearCreature() {
 		clearTopImage();
 		bad = null;
