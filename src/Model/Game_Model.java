@@ -3,11 +3,9 @@ package Model;
 import Controller.Game_Controller;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Scanner;
 
 public class Game_Model {
@@ -20,11 +18,11 @@ public class Game_Model {
 	private int globalY = 1;
 
 	// use these values to edit the surrounding values
-	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
-	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
+	//final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0 };
+	//final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1 };
 	//TODO arrays
-	//final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0, 2, -2, 0, 0 };
-	// final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1, 0, 0, -2, 2 };
+	final int[] horizontal = { 0, 1, -1, 1, 1, -1, -1, 0, 0, 2, -2, 0, 0 };
+	final int[] vertical = { 0, 0, 0, 1, -1, 1, -1, 1, -1, 0, 0, -2, 2 };
 
 	// final variables for the directions
 	final public int UP = 1;
@@ -38,22 +36,22 @@ public class Game_Model {
 	Game_Controller cont;
 	public boolean flashlight = false;
 
-	Timer t = null;
-
 	// player object
 	public Player guy;
-	//public BasicThug thug = new BasicThug("enemy.png", 2, 1);
-	
+	BasicThug thug;
+
 	public Game_Model(Game_Controller controller) {
+
 		makeAllBoards();
 		fillBoard();
 		gameBoard[xPos][yPos].setPlayer(true);
 		cont = controller;
 		guy = new Player(cont);
-
+		thug = new BasicThug("enemy.png", 2, 1,this,xPos,yPos);
+		thug.begin();
 		// TODO DEMO
-		//darkenAll();
-		 //creatureStuff();
+		darkenAll();
+		//creatureStuff();
 	}
 
 	private void darkenAll() {
@@ -65,25 +63,7 @@ public class Game_Model {
 
 	}
 
-//	private void creatureStuff() {
-//		gameBoard[xPos - 2][yPos].setCreature(test);
-//		t = new Timer(1000, d -> {
-//			System.out.println(test.getxPos() + " , " + test.getyPos());
-//			moveCreature();
-//			damagePlayer();
-//		});
-//		t.start();
-//	}
-//
-//	private void moveCreature() {
-//		// updates creature's position
-//		test.move();
-//		int x = test.getxPos();
-//		int y = test.getyPos();
-//		// draws creature
-//		gameBoard[x][y].setCreature(test);
-//		cont.refreshScreen();
-//	}
+
 
 	public void damagePlayer() {
 		// all possible horizontal and vertical options
@@ -99,7 +79,7 @@ public class Game_Model {
 				if (guy.getHealth() == 0) {
 					System.out.println("GAME OVER");
 					cont.gameOver();
-					t.stop();
+					thug.t.stop();
 				}
 			}
 		}
@@ -117,7 +97,7 @@ public class Game_Model {
 		world[1][0] = new BaseBoard("[1][0].txt", 0, false, null);
 		world[0][0] = new BaseBoard("[0][0].txt", 0, false, null);
 		//TODO STARTING
-		world[9][1] = new BaseBoard("[9][1].txt", 0, false, null);
+		world[9][1] = new BaseBoard("[9][1].txt", 0, true, null);
 		world[8][1] = new BaseBoard("[8][1].txt", 0, false, null);
 		world[7][1] = new BaseBoard("[7][1].txt", 0, false, null);
 		world[6][1] = new BaseBoard("[6][1].txt", 0, false, null);
@@ -320,5 +300,9 @@ public class Game_Model {
 
 	public int getPosY() {
 		return yPos;
+	}
+
+	public void refreshScreen() {
+		cont.refreshScreen();
 	}
 }
