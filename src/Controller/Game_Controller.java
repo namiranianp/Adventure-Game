@@ -8,14 +8,13 @@ import java.awt.image.BufferedImage;
 public class Game_Controller {
 
 	Game_Model model;
-	Game_View view;
+	public Game_View view;
 
 	public void playGame() {
 
 		model = new Game_Model(this);
 		view = new Game_View(this);
 		view.addKeyAdapter(new CustomKeyAdapter(model, view, this));
-
 	}
 
 	public BufferedImage getImage(int row, int col) {
@@ -30,9 +29,11 @@ public class Game_Controller {
 		return model.getBoardSize();
 	}
 
-	public void refreshScreen(){view.window.repaint();}
+	public void refreshScreen() {
+		view.window.repaint();
+	}
 
-	public void gameOver(){
+	public void gameOver() {
 		view.window.dispose();
 	}
 }

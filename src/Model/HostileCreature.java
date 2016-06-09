@@ -1,7 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Random;
+import javax.swing.*;
 
 public class HostileCreature extends Creature {
 	private int health;
@@ -9,17 +8,29 @@ public class HostileCreature extends Creature {
 	private int xPos;
 	private int yPos;
 	Game_Model model;
+	Timer t = null;
 	
-	public HostileCreature(String imageName, int hp, int atk, Game_Model m) {
+	public HostileCreature(String imageName, int hp, int atk, Game_Model m, int x, int y) {
 		super(imageName);
 		health = hp;
 		attack = atk;
 		model = m;
+		xPos = x;
+		yPos = y;
 	}
-
+	
+	public void begin(){
+		t.start();
+	}
+	
+	public void stop(){
+		t.stop();
+	}
+	
 	public void changeHealth(int hp) {
-		health--;
+		health += hp;
 		if (health <= 0) {
+			model.gameBoard[xPos][yPos].getCreature().stop();
 			model.gameBoard[xPos][yPos].clearCreature();
 		}
 	}
@@ -32,11 +43,11 @@ public class HostileCreature extends Creature {
 		return attack;
 	}
 
-	public int getxPos() {
+	public int getXPos() {
 		return xPos;
 	}
 
-	public int getyPos() {
+	public int getYPos() {
 		return yPos;
 	}
 
@@ -47,4 +58,10 @@ public class HostileCreature extends Creature {
 	public void setYPos(int y){
 		yPos = y;
 	}
+	
+	public void setPos(int x, int y){
+		xPos = x;
+		yPos = y;
+	}
+	
 }
